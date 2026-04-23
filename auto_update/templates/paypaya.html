@@ -49,6 +49,34 @@
 <div class="container paypaya-accent">
 
     {# ═══════════════════════════════════════════════════════ #}
+    {# 动态内容：PAYPAYA 舆情核心看点（从新闻中自动提炼）         #}
+    {# ═══════════════════════════════════════════════════════ #}
+    {% if section_news %}
+    <div class="highlight-box" style="border-left-color:#ec4899;">
+        <h3 style="color:#9d174d;">🔍 PAYPAYA 舆情核心看点（截至 {{ today_str }}，共 {{ section_news | length }} 条）</h3>
+        <ul style="list-style:none; padding:0; margin:0.5rem 0 0;">
+            {% for item in section_news[:8] %}
+            <li style="padding:0.35rem 0; font-size:0.88rem; color:#78350f;">
+                <strong>{{ loop.index }}.</strong>
+                <span style="color:#9a8264; font-size:0.78rem;">[{{ item.published }}]</span>
+                {% if item.fetched_date == today_str %}<span style="display:inline-block;background:#dcfce7;color:#166534;font-size:0.7rem;padding:0.08rem 0.4rem;border-radius:3px;margin-right:0.2rem;font-weight:600;">新</span>{% endif %}
+                {% if item.is_major %}<span style="display:inline-block;background:#fee2e2;color:#991b1b;font-size:0.7rem;padding:0.08rem 0.4rem;border-radius:3px;margin-right:0.2rem;font-weight:600;">重大</span>{% endif %}
+                <a href="{{ item.url }}" target="_blank" style="color:#78350f;">{{ item.title_zh or item.title }}</a>
+                {% if item.source_zh or item.source %}
+                <span style="color:#a8a29e; font-size:0.72rem; margin-left:0.3rem;">— {{ item.source_zh or item.source }}</span>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        {% if section_news | length > 8 %}
+        <div style="text-align:right; margin-top:0.5rem; font-size:0.8rem;">
+            <a href="#paypaya-news-list" style="color:#9d174d;">查看全部 {{ section_news | length }} 条 ↓</a>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {# ═══════════════════════════════════════════════════════ #}
     {# 固定内容：要点提炼                                       #}
     {# ═══════════════════════════════════════════════════════ #}
     <div class="key-points">
@@ -197,7 +225,7 @@
     {# 动态内容：PAYPAYA 市场新闻 · 舆情 · 重点讨论（每日自动更新）    #}
     {# ═══════════════════════════════════════════════════════════════ #}
 
-    <h3 class="section-heading" style="margin-top:2.5rem; padding-top:1.5rem; border-top:2px solid #fce7f3;">
+    <h3 id="paypaya-news-list" class="section-heading" style="margin-top:2.5rem; padding-top:1.5rem; border-top:2px solid #fce7f3;">
         📰 市场新闻 · 舆情动态（共 {{ section_news | length }} 条 · 每日更新）
     </h3>
 
