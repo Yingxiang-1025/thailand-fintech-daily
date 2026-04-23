@@ -130,14 +130,6 @@ def generate_all_pages(news_items: list[dict], vol_number: int = 1):
 
     for sec_key, page_file in SECTION_PAGES.items():
         output_path = PAGES_DIR / page_file
-        if output_path.exists():
-            try:
-                content = output_path.read_text(encoding="utf-8")
-                if "<!-- CURATED -->" in content:
-                    logger.info(f"Skipping curated page: {page_file}")
-                    continue
-            except Exception:
-                pass
 
         sec_context = {
             **context,
@@ -147,6 +139,26 @@ def generate_all_pages(news_items: list[dict], vol_number: int = 1):
             "page_file": page_file,
             "key_points": all_key_points.get(sec_key),
         }
+
+        dedicated_template = f"{sec_key.replace('_', '')}.html"
+        try:
+            env.get_template(dedicated_template)
+            _render_template(
+                env, dedicated_template, PAGES_DIR / page_file, sec_context
+            )
+            continue
+        except Exception:
+            pass
+
+        if output_path.exists():
+            try:
+                content = output_path.read_text(encoding="utf-8")
+                if "<!-- CURATED -->" in content:
+                    logger.info(f"Skipping curated page: {page_file}")
+                    continue
+            except Exception:
+                pass
+
         _render_template(
             env, "section.html", PAGES_DIR / page_file, sec_context
         )
