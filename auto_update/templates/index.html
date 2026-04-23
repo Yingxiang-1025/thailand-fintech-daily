@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>泰国金融科技日报 | Thailand Fintech Daily Brief</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="header">
+    <div class="header-inner">
+        <h1><a href="index.html">Thailand <span>Fintech</span> Daily Brief</a></h1>
+        <div class="header-meta">
+            <div class="date">{{ today_str }} ({{ today_day }})</div>
+            <div>泰国金融科技日报 | {{ vol }}</div>
+        </div>
+    </div>
+</div>
+<div class="nav-bar">
+    <div class="nav-bar-inner">
+        <a href="index.html" class="active">首页</a>
+        <a href="pages/yesterday.html">昨日汇总</a>
+        <a href="pages/monthly.html">当月汇总</a>
+        <a href="pages/paypaya.html">PAYPAYA专题</a>
+        <a href="pages/overview.html">市场概览</a>
+        <a href="pages/regulation.html">监管动态</a>
+        <a href="pages/credit-card.html">信用卡</a>
+        <a href="pages/digital-lending.html">数字信贷</a>
+        <a href="pages/cash-loan.html">现金贷</a>
+        <a href="pages/bnpl.html">BNPL</a>
+        <a href="pages/e-wallet.html">电子钱包</a>
+        <a href="pages/digital-bank.html">数字银行</a>
+        <a href="pages/sources.html">信息源</a>
+        <a href="pages/plan.html">更新计划</a>
+    </div>
+</div>
+
+<div class="container">
+
+    {% if major_news %}
+    <div class="highlight-box">
+        <h3>核心看点（截至 {{ today_str }}）</h3>
+        <ul style="list-style:none; padding:0; margin:0.5rem 0 0;">
+            {% for item in major_news[:5] %}
+            <li style="padding:0.3rem 0; font-size:0.88rem; color:#78350f;">
+                <strong>{{ loop.index }}.</strong>
+                <span style="color:#9a8264; font-size:0.78rem;">[{{ item.published }}]</span>
+                {% if item.fetched_date == today_str %}<span style="display:inline-block;background:#dcfce7;color:#166534;font-size:0.7rem;padding:0.08rem 0.4rem;border-radius:3px;margin-right:0.2rem;font-weight:600;">新</span>{% endif %}
+                <a href="{{ item.url }}" target="_blank" style="color:#78350f;">{{ item.title_zh or item.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <h2 style="font-size:1.1rem; color:var(--gray-700); margin-bottom:1rem;">板块导航</h2>
+
+    <div class="dash-grid">
+        <a class="dash-card{% if yesterday_news | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} card-new{% endif %}" href="pages/yesterday.html" style="border-left:3px solid var(--warning);">
+            <div class="dash-card-icon">📰</div>
+            <div class="dash-card-title">昨日汇总{% if yesterday_news | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} <span class="card-tag tag-new" style="font-size:0.65rem; vertical-align:middle;">今日新增</span>{% endif %}</div>
+            <div class="dash-card-desc">{{ yesterday_str }} 新闻摘要</div>
+            <div class="dash-card-count">{{ yesterday_news | length }} 条新闻 →</div>
+        </a>
+        <a class="dash-card{% if monthly_news | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} card-new{% endif %}" href="pages/monthly.html" style="border-left:3px solid var(--success);">
+            <div class="dash-card-icon">📅</div>
+            <div class="dash-card-title">当月汇总{% if monthly_news | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} <span class="card-tag tag-new" style="font-size:0.65rem; vertical-align:middle;">今日新增</span>{% endif %}</div>
+            <div class="dash-card-desc">{{ month_str }} 新闻时间线</div>
+            <div class="dash-card-count">{{ monthly_news | length }} 条新闻 →</div>
+        </a>
+        <a class="dash-card{% if sections.paypaya | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} card-new{% endif %}" href="pages/paypaya.html" style="border-left:3px solid #ec4899;">
+            <div class="dash-card-icon">🔍</div>
+            <div class="dash-card-title">PAYPAYA专题{% if sections.paypaya | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} <span class="card-tag tag-new" style="font-size:0.65rem; vertical-align:middle;">今日新增</span>{% endif %}</div>
+            <div class="dash-card-desc">PAYPAYA产品、กู้เงินถูกกฎหมาย合法借贷生态</div>
+            <div class="dash-card-count">{{ sections.paypaya | default([]) | length }} 条信息 →</div>
+        </a>
+        <a class="dash-card{% if sections.overview | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} card-new{% endif %}" href="pages/overview.html">
+            <div class="dash-card-icon">📊</div>
+            <div class="dash-card-title">市场概览{% if sections.overview | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} <span class="card-tag tag-new" style="font-size:0.65rem; vertical-align:middle;">今日新增</span>{% endif %}</div>
+            <div class="dash-card-desc">泰国金融科技市场核心数据与趋势</div>
+        </a>
+        <a class="dash-card{% if sections.regulation | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} card-new{% endif %}" href="pages/regulation.html">
+            <div class="dash-card-icon">⚖️</div>
+            <div class="dash-card-title">监管动态{% if sections.regulation | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} <span class="card-tag tag-new" style="font-size:0.65rem; vertical-align:middle;">今日新增</span>{% endif %}</div>
+            <div class="dash-card-desc">泰国央行（BOT）、SEC 与合规政策动态</div>
+            <div class="dash-card-count">{{ sections.regulation | default([]) | length }} 条新闻 →</div>
+        </a>
+        <a class="dash-card{% if sections.credit_card | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} card-new{% endif %}" href="pages/credit-card.html">
+            <div class="dash-card-icon">💳</div>
+            <div class="dash-card-title">信用卡{% if sections.credit_card | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} <span class="card-tag tag-new" style="font-size:0.65rem; vertical-align:middle;">今日新增</span>{% endif %}</div>
+            <div class="dash-card-desc">信用卡产品与市场趋势</div>
+            <div class="dash-card-count">{{ sections.credit_card | default([]) | length }} 条新闻 →</div>
+        </a>
+        <a class="dash-card{% if sections.digital_lending | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} card-new{% endif %}" href="pages/digital-lending.html">
+            <div class="dash-card-icon">🏦</div>
+            <div class="dash-card-title">数字信贷{% if sections.digital_lending | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} <span class="card-tag tag-new" style="font-size:0.65rem; vertical-align:middle;">今日新增</span>{% endif %}</div>
+            <div class="dash-card-desc">数字贷款、SME 融资与科技信贷</div>
+            <div class="dash-card-count">{{ sections.digital_lending | default([]) | length }} 条新闻 →</div>
+        </a>
+        <a class="dash-card{% if sections.cash_loan | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} card-new{% endif %}" href="pages/cash-loan.html">
+            <div class="dash-card-icon">💰</div>
+            <div class="dash-card-title">现金贷{% if sections.cash_loan | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} <span class="card-tag tag-new" style="font-size:0.65rem; vertical-align:middle;">今日新增</span>{% endif %}</div>
+            <div class="dash-card-desc">在线现金贷、利率与趋势</div>
+            <div class="dash-card-count">{{ sections.cash_loan | default([]) | length }} 条新闻 →</div>
+        </a>
+        <a class="dash-card{% if sections.bnpl | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} card-new{% endif %}" href="pages/bnpl.html">
+            <div class="dash-card-icon">🛒</div>
+            <div class="dash-card-title">BNPL{% if sections.bnpl | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} <span class="card-tag tag-new" style="font-size:0.65rem; vertical-align:middle;">今日新增</span>{% endif %}</div>
+            <div class="dash-card-desc">先买后付与头部玩家动态</div>
+            <div class="dash-card-count">{{ sections.bnpl | default([]) | length }} 条新闻 →</div>
+        </a>
+        <a class="dash-card{% if sections.e_wallet | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} card-new{% endif %}" href="pages/e-wallet.html" style="border-left:3px solid #3b82f6;">
+            <div class="dash-card-icon">📲</div>
+            <div class="dash-card-title">电子钱包{% if sections.e_wallet | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} <span class="card-tag tag-new" style="font-size:0.65rem; vertical-align:middle;">今日新增</span>{% endif %}</div>
+            <div class="dash-card-desc">PromptPay、TrueMoney 与电子支付生态</div>
+            <div class="dash-card-count">{{ sections.e_wallet | default([]) | length }} 条新闻 →</div>
+        </a>
+        <a class="dash-card{% if sections.digital_bank | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} card-new{% endif %}" href="pages/digital-bank.html">
+            <div class="dash-card-icon">📱</div>
+            <div class="dash-card-title">数字银行{% if sections.digital_bank | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} <span class="card-tag tag-new" style="font-size:0.65rem; vertical-align:middle;">今日新增</span>{% endif %}</div>
+            <div class="dash-card-desc">数字银行、支付与开放银行</div>
+            <div class="dash-card-count">{{ sections.digital_bank | default([]) | length }} 条新闻 →</div>
+        </a>
+        <a class="dash-card" href="pages/sources.html">
+            <div class="dash-card-icon">🌐</div>
+            <div class="dash-card-title">信息源</div>
+            <div class="dash-card-desc">主要信息来源与监测网址</div>
+        </a>
+        <a class="dash-card" href="pages/plan.html">
+            <div class="dash-card-icon">📋</div>
+            <div class="dash-card-title">更新计划</div>
+            <div class="dash-card-desc">日更执行与推送计划</div>
+        </a>
+    </div>
+
+    {% set recent_news = all_news | sort(attribute='published', reverse=True) %}
+    {% if recent_news %}
+    <h2 style="font-size:1.1rem; color:var(--gray-700); margin:1.5rem 0 1rem;">最近动态（共 {{ all_news | length }} 条）</h2>
+    {% for item in recent_news[:10] %}
+    <div class="card{% if item.fetched_date == today_str %} card-new{% endif %}">
+        <div class="card-body">
+            {% for sec in item.sections %}
+            <span class="card-tag {{ section_tags.get(sec, 'tag-market') }}">{{ section_names.get(sec, sec) }}</span>
+            {% endfor %}
+            {% if item.is_major %}<span class="card-tag tag-breaking">重大</span>{% endif %}
+            {% if item.fetched_date == today_str %}<span class="card-tag tag-new">今日新增</span>{% endif %}
+            <div class="card-title">
+                <a href="{{ item.url }}" target="_blank">{{ item.title_zh or item.title }}</a>
+            </div>
+            <div class="card-summary">{{ item.summary_zh or item.summary }}</div>
+            <div class="card-meta">
+                <span class="card-source">{{ item.source_zh or item.source }}</span>
+                {% if item.published %}<span>{{ item.published }}</span>{% endif %}
+                <a href="{{ item.url }}" class="card-link" target="_blank">查看原文 →</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+</div>
+
+<div class="footer">
+    <p><strong>Thailand Fintech Daily Brief</strong> | 泰国金融科技日报</p>
+    <p style="margin-top:0.3rem;">数据截至: {{ today_str }} | 自动更新</p>
+</div>
+
+</body>
+</html>
