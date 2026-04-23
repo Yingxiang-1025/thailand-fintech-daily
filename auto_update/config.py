@@ -55,7 +55,12 @@ SEARCH_QUERIES = [
     "Thailand fintech lending news 2026",
     "Thailand digital bank BNPL 2026",
     "PAYPAYA Thailand loan",
+    "PAYPAYA เพย์พาญ่า สินเชื่อ",
+    "เพย์พาญ่า Prompt Cash app",
+    "Akulaku X SCBX PAYPAYA Thailand",
     "กู้เงินถูกกฎหมาย 2026",
+    "กู้เงินถูกกฎหมาย แอปสินเชื่อ 2026",
+    "สินเชื่อออนไลน์ถูกกฎหมาย แอป 2026",
     "TrueMoney PromptPay Thailand fintech",
     "Thailand cash loan pinjaman online 2026",
     "BOT Thailand fintech regulation 2026",
@@ -91,7 +96,9 @@ SECTION_KEYWORDS = {
         "digital bank", "LINE BK", "KBank", "SCB", "Kasikorn", "neobank", "ธนาคารดิจิทัล",
     ],
     "paypaya": [
-        "PAYPAYA", "paypaya", "กู้เงินถูกกฎหมาย", "สินเชื่อถูกกฎหมาย",
+        "PAYPAYA", "paypaya", "เพย์พาญ่า", "Akulaku X", "akulaku x",
+        "Prompt Cash", "กู้เงินถูกกฎหมาย", "สินเชื่อถูกกฎหมาย",
+        "แอปเงินกู้ถูกกฎหมาย", "สินเชื่อออนไลน์ถูกกฎหมาย",
     ],
 }
 
@@ -99,8 +106,8 @@ SECTION_KEYWORDS = {
 # (kept specific to fintech/finance to avoid noise like mining, politics, etc.)
 GLOBAL_KEYWORDS = [
     "fintech", "lending", "สินเชื่อ", "เงินกู้", "digital bank", "e-wallet", "BNPL", "paylater", "TrueMoney",
-    "PromptPay", "PAYPAYA", "BOT", "Bank of Thailand", "QR payment", "digital payment", "neobank", "กู้เงิน",
-    "Atome", "LINE BK", "cash loan",
+    "PromptPay", "PAYPAYA", "เพย์พาญ่า", "Akulaku X", "BOT", "Bank of Thailand", "QR payment", "digital payment", "neobank", "กู้เงิน",
+    "สินเชื่อถูกกฎหมาย", "แอปเงินกู้", "Atome", "LINE BK", "cash loan",
 ]
 
 # ─── Section → HTML page mapping ────────────────────────

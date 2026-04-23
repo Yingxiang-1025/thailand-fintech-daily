@@ -26,7 +26,7 @@ def assign_sections(items: list[NewsItem]) -> list[NewsItem]:
                 matched.append(section)
         item.sections = matched if matched else ["digital_lending"]
 
-        if "paypaya" in text or "กู้เงินถูกกฎหมาย" in text_raw:
+        if "paypaya" in text or "เพย์พาญ่า" in text_raw or "akulaku x" in text or "กู้เงินถูกกฎหมาย" in text_raw or "สินเชื่อถูกกฎหมาย" in text_raw or "prompt cash" in text:
             if "paypaya" not in item.sections:
                 item.sections.append("paypaya")
 
@@ -94,7 +94,7 @@ def mark_major_news(items: list[NewsItem], top_n: int = 3) -> list[NewsItem]:
     Priority: PAYPAYA / BOT / Bank of Thailand > regulation > funding > product > market.
     """
     priority_keywords = {
-        5: ["PAYPAYA", "paypaya"],
+        5: ["PAYPAYA", "paypaya", "เพย์พาญ่า", "Akulaku X", "Prompt Cash", "กู้เงินถูกกฎหมาย"],
         4: [
             "regulation", "BOT", "Bank of Thailand", "SEC Thailand", "moratorium", "ban",
             "compliance", "licensing", "consumer protection",

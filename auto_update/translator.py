@@ -55,7 +55,7 @@ SOURCE_MAP = {
 def _title_prefix(title: str) -> str:
     """Determine a Chinese category prefix based on English title keywords."""
     t = title.lower()
-    if "paypaya" in t or "กู้เงินถูกกฎหมาย" in title:
+    if "paypaya" in t or "เพย์พาญ่า" in title or "akulaku x" in t or "prompt cash" in t or "กู้เงินถูกกฎหมาย" in title or "สินเชื่อถูกกฎหมาย" in title:
         return "【PAYPAYA】"
     if any(
         k in t
