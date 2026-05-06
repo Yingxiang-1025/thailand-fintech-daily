@@ -16,29 +16,42 @@ def _get_translator():
     if _translator is None:
         try:
             from deep_translator import GoogleTranslator
-            _translator = GoogleTranslator(source="en", target="zh-CN")
-            logger.info("Google Translator initialized successfully")
+            _translator = GoogleTranslator(source="auto", target="zh-CN")
+            logger.info("Google Translator initialized (auto-detect source)")
         except Exception as e:
             logger.warning(f"Failed to init Google Translator: {e}")
     return _translator
 
 
-def google_translate(text: str) -> str:
-    """Translate English text to Chinese via free Google Translate.
-    Returns original text unchanged on any failure."""
+def _has_chinese(text: str) -> bool:
+    return any("\u4e00" <= c <= "\u9fff" for c in (text or ""))
+
+
+def google_translate(text: str, retries: int = 2) -> str:
+    """Translate text to Chinese via free Google Translate.
+    Auto-detects source language (English/Thai).
+    Retries if result contains no Chinese characters."""
     if not text or not text.strip():
+        return text
+    if _has_chinese(text):
         return text
     translator = _get_translator()
     if not translator:
         return text
-    try:
-        chunk = text[:4500] if len(text) > 4500 else text
-        result = translator.translate(chunk)
-        time.sleep(0.35)
-        return result if result else text
-    except Exception as e:
-        logger.warning(f"Google Translate failed: {e}")
-        return text
+    chunk = text[:4500] if len(text) > 4500 else text
+    for attempt in range(retries + 1):
+        try:
+            result = translator.translate(chunk)
+            time.sleep(0.4)
+            if result and _has_chinese(result):
+                return result
+            if attempt < retries:
+                time.sleep(1)
+        except Exception as e:
+            logger.warning(f"Google Translate attempt {attempt+1} failed: {e}")
+            if attempt < retries:
+                time.sleep(2)
+    return text
 
 
 SOURCE_MAP = {
@@ -136,9 +149,25 @@ def translate_source(source: str) -> str:
     return SOURCE_MAP.get(source, source)
 
 
+def _title_body(title_zh: str) -> str:
+    """Extract the body text after the 【xxx】 prefix."""
+    if "】" in title_zh:
+        return title_zh.split("】", 1)[-1].strip()
+    return title_zh
+
+
+def _has_non_cn_words(text: str) -> bool:
+    """Check if text has significant non-Chinese/non-punctuation words,
+    indicating untranslated Thai or English content."""
+    import re
+    latin_words = re.findall(r"[a-zA-Z]{3,}", text)
+    return len(latin_words) >= 3
+
+
 def translate_news_item(item: dict) -> dict:
-    """Translate a news item dict in-place. Skips items that already have
-    good translations to avoid unnecessary API calls and rate limits."""
+    """Translate a news item dict in-place. Checks that the actual body
+    (not just the prefix) contains Chinese, and detects mixed
+    Thai/English that slipped through."""
     summary_en = item.get("summary", "")
     if "<" in summary_en:
         summary_en = _strip_html(summary_en)
@@ -149,12 +178,15 @@ def translate_news_item(item: dict) -> dict:
         not summary_zh
         or summary_zh == summary_en
         or _looks_garbled(summary_zh)
+        or not _has_chinese(summary_zh)
+        or _has_non_cn_words(summary_zh)
     )
     if needs_summary:
         item["summary_zh"] = translate_summary(summary_en)
 
     title_zh = item.get("title_zh", "")
-    if not title_zh or title_zh == item.get("title", ""):
+    body = _title_body(title_zh)
+    if not title_zh or title_zh == item.get("title", "") or not _has_chinese(body) or _has_non_cn_words(body):
         item["title_zh"] = translate_title(item.get("title", ""))
 
     if not item.get("source_zh"):
