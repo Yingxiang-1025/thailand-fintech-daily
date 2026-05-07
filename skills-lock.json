@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "pua": {
+      "source": "tanweai/pua",
+      "sourceType": "github",
+      "skillPath": "skills/pua/SKILL.md",
+      "computedHash": "6c0aef484866c307bd6da8d8cabda541d37294b942c8f59e9b2ce8caa6156080"
+    }
+  }
+}
