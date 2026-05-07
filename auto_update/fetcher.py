@@ -268,7 +268,27 @@ def save_news(items: list[dict]):
     logger.info(f"Saved {len(items)} news items to {news_file}")
 
 
+def _title_key(title: str) -> str:
+    """Extract first 25 chars of cleaned title for similarity matching."""
+    import re
+    t = re.sub(r"^【[^】]+】\s*", "", title)
+    t = re.sub(r"\s*-\s*[^-]+$", "", t)
+    return t.strip().lower()[:25]
+
+
 def deduplicate(new_items: list[NewsItem], existing: list[dict]) -> list[NewsItem]:
-    """Remove duplicates based on URL."""
+    """Remove duplicates based on URL and title similarity."""
     existing_urls = {item["url"] for item in existing}
-    return [item for item in new_items if item.url not in existing_urls]
+    existing_keys = {_title_key(item.get("title", "")) for item in existing}
+    seen_keys = set()
+    result = []
+    for item in new_items:
+        if item.url in existing_urls:
+            continue
+        key = _title_key(item.title)
+        if key and len(key) > 10 and (key in existing_keys or key in seen_keys):
+            continue
+        if key and len(key) > 10:
+            seen_keys.add(key)
+        result.append(item)
+    return result
