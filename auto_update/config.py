@@ -54,15 +54,15 @@ RSS_FEEDS = [
 SEARCH_QUERIES = [
     "Thailand fintech lending news 2026",
     "Thailand digital bank BNPL 2026",
-    "PAYPAYA Thailand loan",
-    "PAYPAYA เพย์พาญ่า สินเชื่อ",
-    "เพย์พาญ่า Prompt Cash app",
-    "Akulaku X SCBX PAYPAYA Thailand",
+    "\"PAYPAYA\" Thailand loan fintech",
+    "\"เพย์พาญ่า\" สินเชื่อ",
+    "\"PAYPAYA\" เพย์พาญ่า app 2026",
+    "Akulaku X SCBX \"PAYPAYA\" Thailand",
     "กู้เงินถูกกฎหมาย 2026",
     "กู้เงินถูกกฎหมาย แอปสินเชื่อ 2026",
     "สินเชื่อออนไลน์ถูกกฎหมาย แอป 2026",
     "TrueMoney PromptPay Thailand fintech",
-    "Thailand cash loan pinjaman online 2026",
+    "Thailand cash loan สินเชื่อเงินสด 2026",
     "BOT Thailand fintech regulation 2026",
     "Thailand P2P lending news",
     "Thailand e-wallet digital payment 2026",
@@ -108,6 +108,15 @@ GLOBAL_KEYWORDS = [
     "fintech", "lending", "สินเชื่อ", "เงินกู้", "digital bank", "e-wallet", "BNPL", "paylater", "TrueMoney",
     "PromptPay", "PAYPAYA", "เพย์พาญ่า", "Akulaku X", "BOT", "Bank of Thailand", "QR payment", "digital payment", "neobank", "กู้เงิน",
     "สินเชื่อถูกกฎหมาย", "แอปเงินกู้", "Atome", "LINE BK", "cash loan",
+]
+
+EXCLUDE_KEYWORDS = [
+    "AdaKami", "Asetku", "Kredivo Indonesia", "OJK", "Investree",
+    "KoinWorks", "Modalku", "Danamas", "Amartha", "Kredit Pintar",
+    "pinjaman online", "pinjol", "Indonesia GDP", "印度尼西亚",
+    "印尼GDP",
+    "papaya fruit", "papaya tree", "pad thai", "Gordon Ramsay",
+    "gangster", "murder", "Koh Samui crime",
 ]
 
 # ─── Section → HTML page mapping ────────────────────────

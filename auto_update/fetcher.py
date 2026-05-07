@@ -13,6 +13,7 @@ from dateutil import parser as date_parser
 
 from config import (
     DATA_DIR,
+    EXCLUDE_KEYWORDS,
     GLOBAL_KEYWORDS,
     RSS_FEEDS,
     SEARCH_QUERIES,
@@ -163,10 +164,14 @@ def _search_serpapi(queries: list) -> list[NewsItem]:
                     except (ValueError, TypeError):
                         pass
 
+                title_text = result.get("title", "")
+                snippet = result.get("snippet", "")
+                if not _is_relevant(title_text, snippet):
+                    continue
                 item = NewsItem(
-                    title=result.get("title", ""),
+                    title=title_text,
                     url=url,
-                    summary=result.get("snippet", ""),
+                    summary=snippet,
                     source=result.get("source", {}).get("name", "Web"),
                     published=pub_date,
                 )
@@ -212,8 +217,11 @@ def _search_google_news_rss(queries: list) -> list[NewsItem]:
                     raw_summary = BeautifulSoup(raw_summary, "html.parser").get_text()
                 raw_summary = raw_summary[:500]
 
+                title_text = entry.get("title", "").strip()
+                if not _is_relevant(title_text, raw_summary):
+                    continue
                 item = NewsItem(
-                    title=entry.get("title", "").strip(),
+                    title=title_text,
                     url=url,
                     summary=raw_summary,
                     source=entry.get("source", {}).get("title", "Google News"),
@@ -231,8 +239,13 @@ def _search_google_news_rss(queries: list) -> list[NewsItem]:
 
 def _is_relevant(title: str, summary: str) -> bool:
     """Check if article is relevant to Thailand fintech.
-    Requires at least 2 keyword matches to reduce noise from general business feeds."""
+    Requires at least 2 keyword matches and no Indonesia-specific exclusions."""
     text = (title + " " + summary).lower()
+    for ex in EXCLUDE_KEYWORDS:
+        if ex.lower() in text:
+            return False
+    if "papaya" in text and "paypaya" not in text:
+        return False
     matches = sum(1 for kw in GLOBAL_KEYWORDS if kw.lower() in text)
     return matches >= 2
 
