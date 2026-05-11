@@ -3,6 +3,7 @@ News fetcher module: RSS feeds + web search.
 """
 import json
 import logging
+import re
 import time
 from datetime import datetime, timedelta
 from typing import Optional
@@ -21,6 +22,28 @@ from config import (
 )
 
 logger = logging.getLogger(__name__)
+
+
+def _url_date_conflicts(url: str, pub_date_str: str) -> bool:
+    """Return True if URL path contains a year that conflicts with published date."""
+    if not url or not pub_date_str:
+        return False
+    url_years = re.findall(r"/(\d{4})/", url)
+    if not url_years:
+        return False
+    try:
+        pub_year = int(pub_date_str[:4])
+    except (ValueError, IndexError):
+        return False
+    for y_str in url_years:
+        y = int(y_str)
+        if y < 2026 and abs(pub_year - y) > 1:
+            logger.warning(
+                f"URL date conflict: URL year {y} vs published {pub_date_str} "
+                f"for {url[:80]}"
+            )
+            return True
+    return False
 
 
 class NewsItem:
@@ -98,12 +121,16 @@ def fetch_rss_feeds(max_age_days: int = 7) -> list[NewsItem]:
                 if not _is_relevant(title, summary):
                     continue
 
+                pub_str = pub_date.strftime("%Y-%m-%d") if pub_date else None
+                if _url_date_conflicts(link, pub_str):
+                    continue
+
                 item = NewsItem(
                     title=title,
                     url=link,
                     summary=summary,
                     source=feed_config["name"],
-                    published=pub_date.strftime("%Y-%m-%d") if pub_date else None,
+                    published=pub_str,
                 )
                 items.append(item)
 
@@ -171,6 +198,8 @@ def _search_serpapi(queries: list) -> list[NewsItem]:
                 snippet = result.get("snippet", "")
                 if not _is_relevant(title_text, snippet):
                     continue
+                if _url_date_conflicts(url, pub_date):
+                    continue
                 item = NewsItem(
                     title=title_text,
                     url=url,
@@ -223,6 +252,8 @@ def _search_google_news_rss(queries: list) -> list[NewsItem]:
 
                 title_text = entry.get("title", "").strip()
                 if not _is_relevant(title_text, raw_summary):
+                    continue
+                if _url_date_conflicts(url, pub_date):
                     continue
                 item = NewsItem(
                     title=title_text,
