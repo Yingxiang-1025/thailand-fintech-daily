@@ -111,10 +111,15 @@ GLOBAL_KEYWORDS = [
 ]
 
 EXCLUDE_KEYWORDS = [
-    "AdaKami", "Asetku", "Kredivo Indonesia", "OJK", "Investree",
+    "AdaKami", "Asetku", "Kredivo", "OJK", "Investree",
     "KoinWorks", "Modalku", "Danamas", "Amartha", "Kredit Pintar",
     "pinjaman online", "pinjol", "Indonesia GDP", "印度尼西亚",
-    "印尼GDP",
+    "印尼GDP", "Indonesia fintech", "Indonesian fintech",
+    "Indonesia BNPL", "Indonesia lending",
+    "GoPay Indonesia", "OVO Indonesia", "DANA Indonesia",
+    "Tokopedia", "GoPayLater",
+    "BSP Philippines", "Bangko Sentral", "Philippines fintech",
+    "GCash", "Maya Philippines", "UnionBank Philippines",
     "papaya fruit", "papaya tree", "pad thai", "Gordon Ramsay",
     "gangster", "murder", "Koh Samui crime",
 ]
