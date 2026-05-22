@@ -54,9 +54,31 @@ RSS_FEEDS = [
     # Peer brands
     {"name": "GN Grab Financial TH", "url": "https://news.google.com/rss/search?q=Grab+Financial+Thailand+2026&hl=en&gl=TH&ceid=TH:en", "category": "bnpl"},
     {"name": "GN Ascend Money", "url": "https://news.google.com/rss/search?q=%22Ascend+Money%22+Thailand&hl=en&gl=TH&ceid=TH:en", "category": "e_wallet"},
-    # Regional English fintech media (geo-filtered)
+    # ── Thai mainstream direct RSS ──
+    {"name": "BangkokBizNews Finance", "url": "http://www.bangkokbiznews.com/rss/Finance.xml", "category": "mainstream"},
+    {"name": "PostToday", "url": "http://www.posttoday.com/digitalproduct/rss", "category": "mainstream"},
+    # ── Thai mainstream via Google News RSS (site-specific) ──
+    {"name": "GN Thansettakij", "url": "https://news.google.com/rss/search?q=site:thansettakij.com+%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD+OR+%E0%B8%9F%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%97%E0%B8%84+OR+%E0%B8%98%E0%B8%99%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%A3&hl=th&gl=TH&ceid=TH:th", "category": "mainstream"},
+    {"name": "GN Matichon Finance", "url": "https://news.google.com/rss/search?q=site:matichon.co.th+%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD+OR+%E0%B8%9F%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%97%E0%B8%84+OR+%E0%B8%98%E0%B8%99%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%A3&hl=th&gl=TH&ceid=TH:th", "category": "mainstream"},
+    {"name": "GN Kaohoon", "url": "https://news.google.com/rss/search?q=site:kaohoon.com+%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD+OR+%E0%B8%9F%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%97%E0%B8%84+OR+%E0%B8%98%E0%B8%99%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%A3&hl=th&gl=TH&ceid=TH:th", "category": "mainstream"},
+    {"name": "GN TheStandard Wealth", "url": "https://news.google.com/rss/search?q=site:thestandard.co+%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD+OR+%E0%B8%9F%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%97%E0%B8%84+OR+%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%87%E0%B8%B4%E0%B8%99&hl=th&gl=TH&ceid=TH:th", "category": "mainstream"},
+    {"name": "GN MoneyChannel", "url": "https://news.google.com/rss/search?q=site:moneychannel.co.th+%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD+OR+%E0%B8%9F%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%97%E0%B8%84&hl=th&gl=TH&ceid=TH:th", "category": "mainstream"},
+    # ── Virtual bank (hot topic 2026) ──
+    {"name": "GN Virtual Bank TH", "url": "https://news.google.com/rss/search?q=%E0%B8%A7%E0%B8%B4%E0%B8%A3%E0%B9%8C%E0%B8%8A%E0%B8%A7%E0%B8%A5%E0%B9%81%E0%B8%9A%E0%B8%87%E0%B8%81%E0%B9%8C+%E0%B9%84%E0%B8%97%E0%B8%A2&hl=th&gl=TH&ceid=TH:th", "category": "virtual_bank"},
+    {"name": "GN Virtual Bank EN", "url": "https://news.google.com/rss/search?q=%22virtual+bank%22+Thailand+2026&hl=en&gl=TH&ceid=TH:en", "category": "virtual_bank"},
+    {"name": "GN BankX", "url": "https://news.google.com/rss/search?q=BankX+SCBX+Thailand&hl=en&gl=TH&ceid=TH:en", "category": "virtual_bank"},
+    {"name": "GN CLICX Bank", "url": "https://news.google.com/rss/search?q=CLICX+virtual+bank+Thailand&hl=en&gl=TH&ceid=TH:en", "category": "virtual_bank"},
+    # ── Regulation (broader scope) ──
+    {"name": "GN BOT Regulation", "url": "https://news.google.com/rss/search?q=%E0%B8%98%E0%B8%9B%E0%B8%97+%E0%B8%81%E0%B8%8E%E0%B9%80%E0%B8%81%E0%B8%93%E0%B8%91%E0%B9%8C+%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD&hl=th&gl=TH&ceid=TH:th", "category": "regulation"},
+    {"name": "GN SEC Fintech", "url": "https://news.google.com/rss/search?q=%E0%B8%81%E0%B8%A5%E0%B8%95+%E0%B8%9F%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%97%E0%B8%84+%E0%B8%94%E0%B8%B4%E0%B8%88%E0%B8%B4%E0%B8%97%E0%B8%B1%E0%B8%A5&hl=th&gl=TH&ceid=TH:th", "category": "regulation"},
+    # ── Regional English fintech media (geo-filtered) ──
     {"name": "Fintech News SG", "url": "https://fintechnews.sg/feed/", "category": "fintech"},
     {"name": "e27", "url": "https://e27.co/feed/", "category": "fintech"},
+    {"name": "GN DealStreetAsia TH", "url": "https://news.google.com/rss/search?q=site:dealstreetasia.com+Thailand+fintech+OR+lending+OR+bank&hl=en&gl=TH&ceid=TH:en", "category": "fintech"},
+    {"name": "GN KrASIA TH", "url": "https://news.google.com/rss/search?q=site:kr-asia.com+Thailand+fintech&hl=en&gl=TH&ceid=TH:en", "category": "fintech"},
+    {"name": "GN Nikkei Thailand", "url": "https://news.google.com/rss/search?q=site:asia.nikkei.com+Thailand+fintech+OR+bank+OR+payment&hl=en&gl=TH&ceid=TH:en", "category": "fintech"},
+    {"name": "GN FintechTimes TH", "url": "https://news.google.com/rss/search?q=site:thefintechtimes.com+Thailand&hl=en&gl=TH&ceid=TH:en", "category": "fintech"},
+    {"name": "GN CrowdfundInsider TH", "url": "https://news.google.com/rss/search?q=site:crowdfundinsider.com+Thailand+fintech&hl=en&gl=TH&ceid=TH:en", "category": "fintech"},
 ]
 
 # ─── Web Search Queries (run daily) ─────────────────────
@@ -110,6 +132,11 @@ SEARCH_QUERIES = [
     "ธปท กฎเกณฑ์ สินเชื่อดิจิทัล 2026",
     "BOT lending license Thailand 2026",
     "กฎหมายสินเชื่อออนไลน์ ไทย ล่าสุด",
+    # ── Virtual bank (2026 hot topic) ──
+    "virtual bank Thailand SCBX BankX 2026",
+    "virtual bank Thailand CLICX Krungthai 2026",
+    "วิร์ชวลแบงก์ ไทย 2026",
+    "virtual bank license Thailand BOT 2026",
     # ── General fintech - English ──
     "Thailand fintech lending news 2026",
     "Thailand digital bank BNPL 2026",
@@ -117,11 +144,18 @@ SEARCH_QUERIES = [
     "Thailand P2P lending news 2026",
     "Thailand e-wallet digital payment 2026",
     "Thailand neobank challenger bank 2026",
+    "Thailand fintech funding startup 2026",
+    "Thailand digital lending SME MSME 2026",
+    "Thailand open banking data sharing 2026",
+    "Thailand mobile payment cross-border 2026",
     # ── General fintech - Thai ──
     "ฟินเทค ไทย ข่าวล่าสุด 2026",
     "สินเชื่อเงินสด ออนไลน์ ไทย 2026",
     "ธนาคารดิจิทัล ไทย ล่าสุด",
     "QR payment PromptPay ล่าสุด",
+    "สินเชื่อ ธปท กำกับดูแล ล่าสุด",
+    "แอปกู้เงิน ถูกกฎหมาย ล่าสุด ไทย",
+    "ชำระเงินดิจิทัล ไทย ล่าสุด",
 ]
 
 # ─── Keyword Filters ────────────────────────────────────

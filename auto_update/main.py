@@ -54,7 +54,7 @@ def run_update(dry_run: bool = False):
     logger.info(f"Existing news items: {len(existing)}")
 
     # 2. Fetch new articles
-    rss_items = fetch_rss_feeds(max_age_days=7)
+    rss_items = fetch_rss_feeds(max_age_days=30)
     search_items = search_web()
     all_new = rss_items + search_items
     logger.info(f"Fetched {len(all_new)} new articles (RSS: {len(rss_items)}, Search: {len(search_items)})")
