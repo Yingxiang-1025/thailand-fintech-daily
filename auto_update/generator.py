@@ -13,6 +13,7 @@ from config import (
     DATA_DIR,
     OUTPUT_DIR,
     PAGES_DIR,
+    REGULATION_DAILY_CAP,
     SECTION_DISPLAY_NAMES,
     SECTION_PAGES,
     SECTION_TAG_CLASSES,
@@ -23,15 +24,7 @@ logger = logging.getLogger(__name__)
 
 
 def _validate_news_items(news_items: list[dict]) -> list[dict]:
-    """Validate and filter news items before page generation.
-
-    Checks:
-    1. published date must be valid YYYY-MM-DD format, >= 2026-01-01
-    2. If URL contains /YYYY/ where YYYY < 2026, reject item
-    3. If published == fetched_date and title/summary mentions pre-2026
-       year (not as a reference to data), flag as suspicious
-    4. Items without published date are removed
-    """
+    """Validate and filter news items before page generation."""
     valid = []
     removed_count = 0
 
@@ -70,6 +63,14 @@ def _validate_news_items(news_items: list[dict]) -> list[dict]:
                     removed_count += 1
                     continue
 
+        # Fix Google News unresolved URLs
+        if "news.google.com/rss/articles/" in item.get("url", ""):
+            from urllib.parse import quote
+            title_raw = item.get("title", "")
+            source = item.get("source", "")
+            search_q = f'"{title_raw}" {source}'.strip()
+            item["url"] = f"https://www.google.com/search?q={quote(search_q)}"
+
         fetch = item.get("fetched_date", "")
         if pub == fetch:
             summary = item.get("summary_zh") or item.get("summary", "")
@@ -91,6 +92,21 @@ def _validate_news_items(news_items: list[dict]) -> list[dict]:
         logger.info(f"VALIDATION: all {len(valid)} items passed date checks")
 
     return valid
+
+
+def _cap_regulation_in_list(items: list[dict], cap: int) -> list[dict]:
+    """Cap regulation-only items in a list."""
+    result = []
+    reg_count = 0
+    for item in items:
+        sections = set(item.get("sections", []))
+        is_pure_reg = sections == {"regulation"} or sections <= {"regulation"}
+        if is_pure_reg:
+            reg_count += 1
+            if reg_count > cap:
+                continue
+        result.append(item)
+    return result
 
 
 def _get_env() -> Environment:
@@ -148,31 +164,39 @@ def generate_all_pages(news_items: list[dict], vol_number: int = 1):
         "section_names": SECTION_DISPLAY_NAMES,
     }
 
-    # Group news by section
+    # Group news by section (items in paypaya section excluded from other sections)
     sections = {key: [] for key in SECTION_PAGES}
     for item in news_items:
-        for sec in item.get("sections", []):
+        item_sections = item.get("sections", [])
+        is_paypaya = "paypaya" in item_sections
+        for sec in item_sections:
             if sec in sections:
+                if is_paypaya and sec != "paypaya":
+                    continue
                 sections[sec].append(item)
 
     # Sort each section by date (newest first)
     for sec in sections:
         sections[sec].sort(key=lambda x: x.get("published", ""), reverse=True)
 
-    # Today's and yesterday's news
+    # Today's and yesterday's news (cap regulation)
     today_news = [
         n for n in news_items if n.get("published") == today.strftime("%Y-%m-%d")
     ]
+    today_news = _cap_regulation_in_list(today_news, REGULATION_DAILY_CAP)
+
     yesterday_news = [
         n for n in news_items if n.get("published") == yesterday.strftime("%Y-%m-%d")
     ]
+    yesterday_news = _cap_regulation_in_list(yesterday_news, REGULATION_DAILY_CAP)
 
-    # Current month news
+    # Current month news (cap regulation)
     month_prefix = today.strftime("%Y-%m")
     monthly_news = [
         n for n in news_items if n.get("published", "").startswith(month_prefix)
     ]
     monthly_news.sort(key=lambda x: x.get("published", ""), reverse=True)
+    monthly_news = _cap_regulation_in_list(monthly_news, REGULATION_DAILY_CAP * 5)
 
     # Major news (top 5)
     major_news = [n for n in news_items if n.get("is_major")][:5]
@@ -196,13 +220,6 @@ def generate_all_pages(news_items: list[dict], vol_number: int = 1):
     )
 
     # Generate each page
-    template_files = {
-        "index.html": OUTPUT_DIR / "index.html",
-        "section.html": None,  # template used per-section
-        "yesterday.html": PAGES_DIR / "yesterday.html",
-        "monthly.html": PAGES_DIR / "monthly.html",
-    }
-
     # 1. Index page
     _render_template(env, "index.html", OUTPUT_DIR / "index.html", context)
 

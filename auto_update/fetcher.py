@@ -1,10 +1,12 @@
 """
 News fetcher module: RSS feeds + web search.
+Synced with Indonesia version: date validation, link validation, geographic filtering.
 """
 import json
 import logging
 import re
 import time
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta
 from typing import Optional
 
@@ -16,18 +18,112 @@ from config import (
     DATA_DIR,
     EXCLUDE_KEYWORDS,
     GLOBAL_KEYWORDS,
+    REGIONAL_SOURCES,
     RSS_FEEDS,
     SEARCH_QUERIES,
     SERPAPI_KEY,
+    THAILAND_GEO_KEYWORDS,
+    WORD_BOUNDARY_KEYWORDS,
 )
 
 logger = logging.getLogger(__name__)
+
+# Sources that aggregate/republish content — dates may not be original
+AGGREGATOR_SOURCES = ["MSN", "msn.com", "TradingView", "tradingview.com",
+                      "Yahoo", "yahoo.com"]
+
+_MONTH_NAMES = {
+    "january": "01", "february": "02", "march": "03", "april": "04",
+    "may": "05", "june": "06", "july": "07", "august": "08",
+    "september": "09", "october": "10", "november": "11", "december": "12",
+    # Thai
+    "มกราคม": "01", "กุมภาพันธ์": "02", "มีนาคม": "03", "เมษายน": "04",
+    "พฤษภาคม": "05", "มิถุนายน": "06", "กรกฎาคม": "07", "สิงหาคม": "08",
+    "กันยายน": "09", "ตุลาคม": "10", "พฤศจิกายน": "11", "ธันวาคม": "12",
+}
+
+
+def _is_old_event_article(title: str, url: str) -> bool:
+    """Detect articles about pre-2026 events based on title/URL patterns."""
+    combined = (title + " " + url).lower()
+    for month_name in _MONTH_NAMES:
+        for pat in [
+            rf"(?:in|on|per|dated?)\s+{month_name}\s+(\d{{4}})",
+            rf"{month_name}[-\s]+(\d{{4}})",
+        ]:
+            m = re.search(pat, combined)
+            if m:
+                year = int(m.group(1))
+                if year < 2026:
+                    has_in_url = any(
+                        mn in url.lower() for mn in _MONTH_NAMES
+                    ) and str(year) in url
+                    if has_in_url:
+                        return True
+    return False
+
+
+def _is_aggregator_source(source: str) -> bool:
+    src_lower = source.lower()
+    return any(agg.lower() in src_lower for agg in AGGREGATOR_SOURCES)
+
+
+def _extract_pub_date_from_page(url: str) -> str | None:
+    """Fetch a page and extract the real publication date from meta tags."""
+    if not url or "google.com/search" in url:
+        return None
+    try:
+        resp = requests.get(
+            url,
+            headers={
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                              "AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
+                "Accept": "text/html",
+            },
+            timeout=10,
+            allow_redirects=True,
+        )
+        if resp.status_code >= 400:
+            return None
+        html = resp.text[:20000]
+
+        for pattern in [
+            r'property="article:published_time"\s+content="([^"]+)"',
+            r'property="og:article:published_time"\s+content="([^"]+)"',
+            r'name="publish[_-]?date"\s+content="([^"]+)"',
+            r'"datePublished"\s*:\s*"([^"]+)"',
+            r'"publishedDate"\s*:\s*"([^"]+)"',
+        ]:
+            m = re.search(pattern, html)
+            if m:
+                raw = m.group(1)
+                try:
+                    dt = date_parser.parse(raw)
+                    return dt.strftime("%Y-%m-%d")
+                except (ValueError, TypeError):
+                    continue
+
+        final_url = resp.url
+        url_date = _extract_date_from_url(final_url)
+        if url_date:
+            return url_date
+
+    except Exception as e:
+        logger.debug(f"Failed to extract date from {url[:60]}: {e}")
+    return None
 
 
 def _resolve_google_news_url(gn_url: str) -> str:
     """Resolve a Google News RSS redirect URL to the actual article URL."""
     if "news.google.com" not in gn_url:
         return gn_url
+    try:
+        from googlenewsdecoder import new_decoderv1
+        decoded = new_decoderv1(gn_url, interval=5)
+        if decoded.get("status") and decoded.get("decoded_url"):
+            return decoded["decoded_url"]
+    except Exception:
+        pass
     try:
         resp = requests.head(gn_url, allow_redirects=True, timeout=8,
                              headers={"User-Agent": "Mozilla/5.0"})
@@ -67,6 +163,42 @@ def _url_date_conflicts(url: str, pub_date_str: str) -> bool:
             )
             return True
     return False
+
+
+_URL_CHECK_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                  "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+}
+
+
+def _validate_url(url: str) -> bool:
+    """Quick check that a URL is reachable."""
+    if not url or "google.com/search" in url:
+        return True
+    try:
+        resp = requests.head(url, headers=_URL_CHECK_HEADERS, timeout=8,
+                             allow_redirects=True)
+        if resp.status_code in (404, 410):
+            return False
+        if resp.status_code >= 500:
+            return False
+        return True
+    except requests.exceptions.ConnectionError:
+        return False
+    except Exception:
+        return True
+
+
+def _url_with_fallback(url: str, title: str, source: str) -> str:
+    """Return url if valid, else Google Search fallback."""
+    if _validate_url(url):
+        return url
+    from urllib.parse import quote
+    search_q = f'"{title}" {source}'.strip()
+    fallback = f"https://www.google.com/search?q={quote(search_q)}"
+    logger.info(f"URL replaced with Google Search fallback: {title[:50]}")
+    return fallback
 
 
 class NewsItem:
@@ -109,7 +241,41 @@ class NewsItem:
         return cls(**data)
 
 
-def fetch_rss_feeds(max_age_days: int = 7) -> list[NewsItem]:
+def _is_relevant(title: str, summary: str, source: str = "") -> bool:
+    """Check if article is relevant to Thailand fintech."""
+    text = (title + " " + summary).lower()
+    for ex in EXCLUDE_KEYWORDS:
+        if ex.lower() in text:
+            return False
+    if "papaya" in text and "paypaya" not in text:
+        return False
+
+    # Word-boundary matching for short keywords
+    match_count = 0
+    for kw in GLOBAL_KEYWORDS:
+        kw_lower = kw.lower()
+        if kw in WORD_BOUNDARY_KEYWORDS:
+            if re.search(rf'\b{re.escape(kw_lower)}\b', text):
+                match_count += 1
+        else:
+            if kw_lower in text:
+                match_count += 1
+
+    if match_count < 2:
+        return False
+
+    # Geographic filter for regional sources
+    if source and any(rs.lower() in source.lower() for rs in REGIONAL_SOURCES):
+        all_text = text.lower()
+        has_geo = any(gk.lower() in all_text for gk in THAILAND_GEO_KEYWORDS)
+        if not has_geo:
+            logger.debug(f"Filtered regional source (no TH geo): {title[:50]}")
+            return False
+
+    return True
+
+
+def fetch_rss_feeds(max_age_days: int = 14) -> list[NewsItem]:
     """Fetch news from configured RSS feeds."""
     items = []
     cutoff = datetime.now() - timedelta(days=max_age_days)
@@ -134,14 +300,16 @@ def fetch_rss_feeds(max_age_days: int = 7) -> list[NewsItem]:
                 title = entry.get("title", "").strip()
                 link = entry.get("link", "").strip()
                 summary = entry.get("summary", entry.get("description", "")).strip()
-                # Remove HTML tags from summary
                 if "<" in summary:
                     from bs4 import BeautifulSoup
-
                     summary = BeautifulSoup(summary, "html.parser").get_text()
                 summary = summary[:500]
 
-                if not _is_relevant(title, summary):
+                if not _is_relevant(title, summary, source=feed_config["name"]):
+                    continue
+
+                if _is_old_event_article(title, link):
+                    logger.info(f"Skip old event article: {title[:50]}")
                     continue
 
                 actual_link = _resolve_google_news_url(link)
@@ -155,12 +323,25 @@ def fetch_rss_feeds(max_age_days: int = 7) -> list[NewsItem]:
                     if url_date != pub_str:
                         pub_str = url_date
 
+                if _is_aggregator_source(feed_config["name"]):
+                    real_date = _extract_pub_date_from_page(actual_link or link)
+                    if real_date:
+                        real_year = int(real_date[:4])
+                        if real_year < 2026:
+                            logger.info(f"Skip aggregator old (real={real_date}): {title[:50]}")
+                            continue
+                        if real_date != pub_str:
+                            pub_str = real_date
+
                 if _url_date_conflicts(actual_link, pub_str):
                     continue
 
+                final_url = actual_link if actual_link != link else link
+                final_url = _url_with_fallback(final_url, title, feed_config["name"])
+
                 item = NewsItem(
                     title=title,
-                    url=actual_link if actual_link != link else link,
+                    url=final_url,
                     summary=summary,
                     source=feed_config["name"],
                     published=pub_str,
@@ -175,10 +356,7 @@ def fetch_rss_feeds(max_age_days: int = 7) -> list[NewsItem]:
 
 
 def search_web(queries: Optional[list] = None) -> list[NewsItem]:
-    """
-    Search for news using SerpAPI (Google Search API).
-    Falls back to Google News RSS if no API key configured.
-    """
+    """Search for news using SerpAPI or Google News RSS fallback."""
     queries = queries or SEARCH_QUERIES
     items = []
 
@@ -231,11 +409,15 @@ def _search_serpapi(queries: list) -> list[NewsItem]:
                 snippet = result.get("snippet", "")
                 if not _is_relevant(title_text, snippet):
                     continue
+                if _is_old_event_article(title_text, url):
+                    continue
                 if _url_date_conflicts(url, pub_date):
                     continue
+
+                final_url = _url_with_fallback(url, title_text, result.get("source", {}).get("name", "Web"))
                 item = NewsItem(
                     title=title_text,
-                    url=url,
+                    url=final_url,
                     summary=snippet,
                     source=result.get("source", {}).get("name", "Web"),
                     published=pub_date,
@@ -264,7 +446,7 @@ def _search_google_news_rss(queries: list) -> list[NewsItem]:
             )
             feed = feedparser.parse(rss_url)
 
-            for entry in feed.entries[:5]:
+            for entry in feed.entries[:10]:
                 gn_url = entry.get("link", "")
                 if gn_url in seen_urls:
                     continue
@@ -293,15 +475,35 @@ def _search_google_news_rss(queries: list) -> list[NewsItem]:
                 raw_summary = raw_summary[:500]
 
                 title_text = entry.get("title", "").strip()
-                if not _is_relevant(title_text, raw_summary):
+                gn_source = entry.get("source", {}).get("title", "Google News")
+                if not _is_relevant(title_text, raw_summary, source=gn_source):
                     continue
+
+                if _is_old_event_article(title_text, actual_url or gn_url):
+                    logger.info(f"Skip old event article: {title_text[:50]}")
+                    continue
+
+                if _is_aggregator_source(gn_source):
+                    real_date = _extract_pub_date_from_page(actual_url or gn_url)
+                    if real_date:
+                        real_year = int(real_date[:4])
+                        if real_year < 2026:
+                            logger.info(f"Skip aggregator old (real={real_date}): {title_text[:50]}")
+                            continue
+                        if real_date != pub_date:
+                            pub_date = real_date
+
                 if _url_date_conflicts(actual_url, pub_date):
                     continue
+
+                final_url = actual_url if actual_url != gn_url else gn_url
+                final_url = _url_with_fallback(final_url, title_text, gn_source)
+
                 item = NewsItem(
                     title=title_text,
-                    url=actual_url if actual_url != gn_url else gn_url,
+                    url=final_url,
                     summary=raw_summary,
-                    source=entry.get("source", {}).get("title", "Google News"),
+                    source=gn_source,
                     published=pub_date,
                 )
                 items.append(item)
@@ -312,19 +514,6 @@ def _search_google_news_rss(queries: list) -> list[NewsItem]:
             logger.warning(f"Google News RSS search failed for '{query}': {e}")
 
     return items
-
-
-def _is_relevant(title: str, summary: str) -> bool:
-    """Check if article is relevant to Thailand fintech.
-    Requires at least 2 keyword matches and no Indonesia-specific exclusions."""
-    text = (title + " " + summary).lower()
-    for ex in EXCLUDE_KEYWORDS:
-        if ex.lower() in text:
-            return False
-    if "papaya" in text and "paypaya" not in text:
-        return False
-    matches = sum(1 for kw in GLOBAL_KEYWORDS if kw.lower() in text)
-    return matches >= 2
 
 
 def load_existing_news() -> list[dict]:
@@ -347,7 +536,6 @@ def save_news(items: list[dict]):
 
 def _title_key(title: str) -> str:
     """Extract first 25 chars of cleaned title for similarity matching."""
-    import re
     t = re.sub(r"^【[^】]+】\s*", "", title)
     t = re.sub(r"\s*-\s*[^-]+$", "", t)
     return t.strip().lower()[:25]

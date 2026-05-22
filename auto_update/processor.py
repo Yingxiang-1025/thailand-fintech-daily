@@ -91,17 +91,21 @@ def generate_summaries_zh(items: list[NewsItem]) -> list[NewsItem]:
 def mark_major_news(items: list[NewsItem], top_n: int = 3) -> list[NewsItem]:
     """
     Mark the top N most important news as major.
-    Priority: PAYPAYA / BOT / Bank of Thailand > regulation > funding > product > market.
+    Priority: PAYPAYA集团(5) > 监管(4) > 同行品牌(3) > 其他(1)
     """
     priority_keywords = {
-        5: ["PAYPAYA", "paypaya", "เพย์พาญ่า", "Akulaku X", "Prompt Cash", "กู้เงินถูกกฎหมาย"],
+        5: ["PAYPAYA", "paypaya", "เพย์พาญ่า", "Akulaku X", "Prompt Cash",
+            "กู้เงินถูกกฎหมาย", "SCBX"],
         4: [
-            "regulation", "BOT", "Bank of Thailand", "SEC Thailand", "moratorium", "ban",
-            "compliance", "licensing", "consumer protection",
+            "ธปท", "Bank of Thailand", "SEC Thailand", "กลต",
+            "regulation fintech", "regulation lending",
         ],
-        3: ["$", "million", "billion", "funding", "raises", "investment"],
-        2: ["launch", "introduce", "new product", "partnership"],
-        1: ["growth", "market", "report"],
+        3: [
+            "TrueMoney", "PromptPay", "LINE BK", "Atome", "ShopBack",
+            "Grab PayLater", "Ascend Money", "KBank", "Kasikorn",
+            "Kredivo", "Home Credit",
+        ],
+        1: ["growth", "market", "report", "launch", "partnership"],
     }
 
     scored: list[tuple[int, NewsItem]] = []
