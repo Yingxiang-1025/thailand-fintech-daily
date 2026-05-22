@@ -273,7 +273,7 @@ def send_wechat_notification(new_items: list[dict], today_str: str) -> bool:
             f"昨日无新增资讯更新。\n\n"
             f"[🌐 查看完整日报]({WEBSITE_URL})"
         )
-        logger.info("No unpushed yesterday news — sending 'no update' notification.")
+        logger.info("No unpushed news in window — sending 'no update' notification.")
     else:
         items = sorted(unpushed, key=lambda n: _meta(_best_section(n))["priority"])
         # Apply per-category caps
@@ -302,8 +302,11 @@ def send_wechat_notification(new_items: list[dict], today_str: str) -> bool:
         if len(items) > MAX_PUSH_ITEMS:
             logger.info(f"Push cap: trimming {len(items)} items to {MAX_PUSH_ITEMS}")
             items = items[:MAX_PUSH_ITEMS]
+
         if len(items) < MIN_PUSH_ITEMS:
-            logger.info(f"Only {len(items)} items, below minimum {MIN_PUSH_ITEMS}")
+            logger.info(f"Only {len(items)} unpushed items, below minimum {MIN_PUSH_ITEMS}. Skipping push.")
+            return True
+
         message = build_message(items, today_str)
         if not message:
             return False
