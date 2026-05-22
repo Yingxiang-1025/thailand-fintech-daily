@@ -119,16 +119,12 @@ def run_update(dry_run: bool = False):
     major_count = sum(1 for n in new_dicts if n.get("is_major"))
     logger.info(f"Major news items: {major_count}")
 
-    # 10. WeChat Work notification — push recent unpushed news (3-day window)
+    # 10. WeChat Work notification — push yesterday's published news
     from datetime import timedelta as _td
-    cutoff_str = (datetime.now() - _td(days=3)).strftime("%Y-%m-%d")
-    push_candidates = [
-        n for n in all_news
-        if n.get("published", "") >= cutoff_str
-    ]
-    push_candidates.sort(key=lambda n: n.get("published", ""), reverse=True)
+    yesterday_str = (datetime.now() - _td(days=1)).strftime("%Y-%m-%d")
+    push_items = [n for n in all_news if n.get("published") == yesterday_str]
     from notifier import send_wechat_notification
-    send_wechat_notification(push_candidates, today_stamp)
+    send_wechat_notification(push_items, today_stamp)
 
     logger.info("Update complete!")
 

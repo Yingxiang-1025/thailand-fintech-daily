@@ -304,8 +304,7 @@ def send_wechat_notification(new_items: list[dict], today_str: str) -> bool:
             items = items[:MAX_PUSH_ITEMS]
 
         if len(items) < MIN_PUSH_ITEMS:
-            logger.info(f"Only {len(items)} unpushed items, below minimum {MIN_PUSH_ITEMS}. Skipping push.")
-            return True
+            logger.warning(f"Only {len(items)} items, below target {MIN_PUSH_ITEMS}. Check for missed content.")
 
         message = build_message(items, today_str)
         if not message:
