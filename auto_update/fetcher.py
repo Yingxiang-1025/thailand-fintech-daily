@@ -113,9 +113,12 @@ def _extract_pub_date_from_page(url: str) -> str | None:
     return None
 
 
-def _resolve_google_news_url(gn_url: str) -> str:
-    """Resolve a Google News RSS redirect URL to the actual article URL."""
+def _resolve_google_news_url(gn_url: str, skip_decode: bool = False) -> str:
+    """Resolve a Google News RSS redirect URL to the actual article URL.
+    If skip_decode=True, returns a Google Search fallback instead of slow decoding."""
     if "news.google.com" not in gn_url:
+        return gn_url
+    if skip_decode:
         return gn_url
     try:
         from googlenewsdecoder import new_decoderv1
@@ -261,7 +264,7 @@ def _is_relevant(title: str, summary: str, source: str = "") -> bool:
             if kw_lower in text:
                 match_count += 1
 
-    if match_count < 2:
+    if match_count < 1:
         return False
 
     # Geographic filter for regional sources
@@ -433,7 +436,8 @@ def _search_serpapi(queries: list) -> list[NewsItem]:
 
 
 def _search_google_news_rss(queries: list) -> list[NewsItem]:
-    """Fallback: use Google News RSS (free, no API key needed)."""
+    """Fallback: use Google News RSS (free, no API key needed).
+    Skips slow URL decoding during search — uses Google Search fallback URLs."""
     items = []
     seen_urls = set()
 
@@ -459,15 +463,6 @@ def _search_google_news_rss(queries: list) -> list[NewsItem]:
                     continue
                 pub_date = parsed_pub.strftime("%Y-%m-%d")
 
-                actual_url = _resolve_google_news_url(gn_url)
-                url_date = _extract_date_from_url(actual_url)
-                if url_date and url_date != pub_date:
-                    url_year = int(url_date[:4])
-                    if url_year < 2026:
-                        logger.info(f"Skip old article (url_date={url_date}): {entry.get('title','')[:50]}")
-                        continue
-                    pub_date = url_date
-
                 raw_summary = entry.get("summary", "").strip()
                 if "<" in raw_summary:
                     from bs4 import BeautifulSoup
@@ -479,25 +474,13 @@ def _search_google_news_rss(queries: list) -> list[NewsItem]:
                 if not _is_relevant(title_text, raw_summary, source=gn_source):
                     continue
 
-                if _is_old_event_article(title_text, actual_url or gn_url):
+                if _is_old_event_article(title_text, gn_url):
                     logger.info(f"Skip old event article: {title_text[:50]}")
                     continue
 
-                if _is_aggregator_source(gn_source):
-                    real_date = _extract_pub_date_from_page(actual_url or gn_url)
-                    if real_date:
-                        real_year = int(real_date[:4])
-                        if real_year < 2026:
-                            logger.info(f"Skip aggregator old (real={real_date}): {title_text[:50]}")
-                            continue
-                        if real_date != pub_date:
-                            pub_date = real_date
-
-                if _url_date_conflicts(actual_url, pub_date):
-                    continue
-
-                final_url = actual_url if actual_url != gn_url else gn_url
-                final_url = _url_with_fallback(final_url, title_text, gn_source)
+                # Use Google Search fallback instead of slow GN URL decoding
+                search_q = f'"{title_text}" {gn_source}'.strip()
+                final_url = f"https://www.google.com/search?q={quote(search_q)}"
 
                 item = NewsItem(
                     title=title_text,
@@ -508,7 +491,7 @@ def _search_google_news_rss(queries: list) -> list[NewsItem]:
                 )
                 items.append(item)
 
-            time.sleep(0.5)
+            time.sleep(0.3)
 
         except Exception as e:
             logger.warning(f"Google News RSS search failed for '{query}': {e}")

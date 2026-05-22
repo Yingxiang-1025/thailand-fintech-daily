@@ -23,13 +23,12 @@ SERPAPI_KEY = os.getenv("SERPAPI_KEY", "")
 
 # ─── RSS Feeds ───────────────────────────────────────────
 RSS_FEEDS = [
-    # Thai mainstream media
-    {"name": "Bangkok Post", "url": "https://www.bangkokpost.com/rss/data/business", "category": "mainstream"},
-    {"name": "The Nation", "url": "https://www.nationthailand.com/rss/business", "category": "mainstream"},
-    {"name": "Thairath", "url": "https://www.thairath.co.th/rss", "category": "mainstream"},
-    # Thai fintech/tech media
+    # Thai fintech/tech media (active feeds)
     {"name": "Techsauce", "url": "https://techsauce.co/feed", "category": "fintech"},
     {"name": "Brand Inside", "url": "https://brandinside.asia/feed", "category": "fintech"},
+    # Thai mainstream (Google News RSS since direct RSS is down)
+    {"name": "GN Bangkok Post Finance", "url": "https://news.google.com/rss/search?q=site:bangkokpost.com+fintech+OR+lending+OR+digital+bank&hl=en&gl=TH&ceid=TH:en", "category": "mainstream"},
+    {"name": "GN Nation Thailand", "url": "https://news.google.com/rss/search?q=site:nationthailand.com+fintech+OR+digital+payment&hl=en&gl=TH&ceid=TH:en", "category": "mainstream"},
     # Thai-language financial media (Google News RSS)
     {"name": "GN Prachachat Finance", "url": "https://news.google.com/rss/search?q=site:prachachat.net+%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD&hl=th&gl=TH&ceid=TH:th", "category": "mainstream"},
     {"name": "GN Manager Finance", "url": "https://news.google.com/rss/search?q=site:mgronline.com+%E0%B8%9F%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%97%E0%B8%84&hl=th&gl=TH&ceid=TH:th", "category": "mainstream"},
