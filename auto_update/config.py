@@ -40,10 +40,23 @@ RSS_FEEDS = [
     {"name": "GN Atome TH", "url": "https://news.google.com/rss/search?q=Atome+BNPL+Thailand&hl=en&gl=TH&ceid=TH:en", "category": "bnpl"},
     {"name": "GN Thai Fintech", "url": "https://news.google.com/rss/search?q=Thailand+fintech+lending+2026&hl=en&gl=TH&ceid=TH:en", "category": "fintech"},
     {"name": "GN Thai Fintech TH", "url": "https://news.google.com/rss/search?q=%E0%B8%9F%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%97%E0%B8%84+%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD+2026&hl=th&gl=TH&ceid=TH:th", "category": "fintech"},
-    # Regional English fintech media
+    # Cash loan / personal loan RSS (Thai)
+    {"name": "GN Cash Loan TH", "url": "https://news.google.com/rss/search?q=%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B9%80%E0%B8%87%E0%B8%B4%E0%B8%99%E0%B8%AA%E0%B8%94+%E0%B9%84%E0%B8%97%E0%B8%A2+2026&hl=th&gl=TH&ceid=TH:th", "category": "cash_loan"},
+    {"name": "GN Personal Loan TH", "url": "https://news.google.com/rss/search?q=%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%9A%E0%B8%B8%E0%B8%84%E0%B8%84%E0%B8%A5+%E0%B9%84%E0%B8%97%E0%B8%A2+2026&hl=th&gl=TH&ceid=TH:th", "category": "cash_loan"},
+    {"name": "GN Legal Loan App", "url": "https://news.google.com/rss/search?q=%E0%B9%81%E0%B8%AD%E0%B8%9B%E0%B8%81%E0%B8%B9%E0%B9%89%E0%B9%80%E0%B8%87%E0%B8%B4%E0%B8%99%E0%B8%96%E0%B8%B9%E0%B8%81%E0%B8%81%E0%B8%8E%E0%B8%AB%E0%B8%A1%E0%B8%B2%E0%B8%A2+2026&hl=th&gl=TH&ceid=TH:th", "category": "cash_loan"},
+    # BNPL / paylater RSS
+    {"name": "GN BNPL TH", "url": "https://news.google.com/rss/search?q=BNPL+paylater+Thailand+2026&hl=en&gl=TH&ceid=TH:en", "category": "bnpl"},
+    {"name": "GN Installment TH", "url": "https://news.google.com/rss/search?q=%E0%B8%9C%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B8%8A%E0%B8%B3%E0%B8%A3%E0%B8%B0+%E0%B9%84%E0%B8%97%E0%B8%A2+%E0%B8%9F%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%97%E0%B8%84+2026&hl=th&gl=TH&ceid=TH:th", "category": "bnpl"},
+    {"name": "GN ShopBack TH", "url": "https://news.google.com/rss/search?q=ShopBack+Thailand+paylater&hl=en&gl=TH&ceid=TH:en", "category": "bnpl"},
+    # E-wallet / PromptPay
+    {"name": "GN PromptPay", "url": "https://news.google.com/rss/search?q=PromptPay+Thailand+2026&hl=en&gl=TH&ceid=TH:en", "category": "e_wallet"},
+    {"name": "GN E-wallet TH", "url": "https://news.google.com/rss/search?q=%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9B%E0%B9%8B%E0%B8%B2%E0%B9%80%E0%B8%87%E0%B8%B4%E0%B8%99%E0%B8%94%E0%B8%B4%E0%B8%88%E0%B8%B4%E0%B8%97%E0%B8%B1%E0%B8%A5+%E0%B9%84%E0%B8%97%E0%B8%A2+2026&hl=th&gl=TH&ceid=TH:th", "category": "e_wallet"},
+    # Peer brands
+    {"name": "GN Grab Financial TH", "url": "https://news.google.com/rss/search?q=Grab+Financial+Thailand+2026&hl=en&gl=TH&ceid=TH:en", "category": "bnpl"},
+    {"name": "GN Ascend Money", "url": "https://news.google.com/rss/search?q=%22Ascend+Money%22+Thailand&hl=en&gl=TH&ceid=TH:en", "category": "e_wallet"},
+    # Regional English fintech media (geo-filtered)
     {"name": "Fintech News SG", "url": "https://fintechnews.sg/feed/", "category": "fintech"},
     {"name": "e27", "url": "https://e27.co/feed/", "category": "fintech"},
-    {"name": "Tech in Asia", "url": "https://www.techinasia.com/feed", "category": "fintech"},
 ]
 
 # ─── Web Search Queries (run daily) ─────────────────────
@@ -76,6 +89,22 @@ SEARCH_QUERIES = [
     "สินเชื่อออนไลน์ถูกกฎหมาย แอป 2026",
     "BNPL ไทย ผ่อนชำระ 2026",
     "กระเป๋าเงินดิจิทัล ไทย 2026",
+    # ── Cash loan / personal loan - expanded ──
+    "สินเชื่อเงินสด อนุมัติเร็ว ไทย 2026",
+    "สินเชื่อส่วนบุคคล ดอกเบี้ยต่ำ ไทย 2026",
+    "กู้เงินด่วน ออนไลน์ ถูกกฎหมาย ไทย",
+    "Speedy Cash สินเชื่อ ไทย",
+    "MoneyThunder สินเชื่อ Thailand",
+    "cash loan Thailand app 2026",
+    "personal loan fintech Thailand 2026",
+    # ── BNPL / paylater - expanded ──
+    "BNPL Thailand market 2026",
+    "paylater Thailand growth 2026",
+    "ผ่อนชำระ ไม่ใช้บัตรเครดิต ไทย 2026",
+    "Atome Thailand paylater 2026",
+    "ShopBack paylater Thailand 2026",
+    "Grab PayLater Thailand news 2026",
+    "ผ่อน 0% ออนไลน์ ไทย 2026",
     # ── Regulation (fintech-focused) ──
     "BOT Thailand fintech regulation 2026",
     "ธปท กฎเกณฑ์ สินเชื่อดิจิทัล 2026",
@@ -117,10 +146,15 @@ SECTION_KEYWORDS = {
     "cash_loan": [
         "cash loan", "เงินกู้", "สินเชื่อ", "personal loan", "Speedy Cash", "MoneyThunder",
         "สินเชื่อส่วนบุคคล", "สินเชื่อเงินสด", "กู้เงิน",
+        "สินเชื่อออนไลน์", "กู้เงินด่วน", "เงินด่วน", "อนุมัติเร็ว",
+        "สินเชื่อถูกกฎหมาย", "แอปกู้เงิน", "แอปสินเชื่อ",
+        "ดอกเบี้ย", "interest rate",
     ],
     "bnpl": [
         "BNPL", "paylater", "pay later", "Atome", "ShopBack", "Grab PayLater",
         "buy now pay later", "ผ่อนชำระ", "ผ่อน 0%",
+        "ผ่อนสินค้า", "ผ่อนจ่าย", "installment", "ผ่อนได้",
+        "ซื้อก่อนจ่ายทีหลัง",
     ],
     "e_wallet": [
         "e-wallet", "TrueMoney", "PromptPay", "Rabbit LINE Pay", "digital wallet",
