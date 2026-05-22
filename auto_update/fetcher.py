@@ -90,9 +90,18 @@ def _extract_pub_date_from_page(url: str) -> str | None:
         for pattern in [
             r'property="article:published_time"\s+content="([^"]+)"',
             r'property="og:article:published_time"\s+content="([^"]+)"',
+            r'content="([^"]+)"\s+property="article:published_time"',
             r'name="publish[_-]?date"\s+content="([^"]+)"',
+            r'name="date"\s+content="([^"]+)"',
+            r'name="DC\.date"\s+content="([^"]+)"',
+            r'name="article\.published"\s+content="([^"]+)"',
             r'"datePublished"\s*:\s*"([^"]+)"',
             r'"publishedDate"\s*:\s*"([^"]+)"',
+            r'"date_published"\s*:\s*"([^"]+)"',
+            r'itemprop="datePublished"\s+content="([^"]+)"',
+            r'content="([^"]+)"\s+itemprop="datePublished"',
+            r'class="published"[^>]*datetime="([^"]+)"',
+            r'data-publishdate="([^"]+)"',
         ]:
             m = re.search(pattern, html)
             if m:
@@ -498,9 +507,15 @@ def _search_google_news_rss(queries: list) -> list[NewsItem]:
                 resolved = _resolve_url_fast(gn_url)
                 if resolved:
                     final_url = resolved
+                    url_date = _extract_date_from_url(resolved)
+                    if url_date and int(url_date[:4]) >= 2026:
+                        pub_date = url_date
                 else:
                     search_q = f'"{title_text}" {gn_source}'.strip()
                     final_url = f"https://www.google.com/search?q={quote(search_q)}"
+
+                if _url_date_conflicts(final_url, pub_date):
+                    continue
 
                 item = NewsItem(
                     title=title_text,
