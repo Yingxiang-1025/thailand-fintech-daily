@@ -220,8 +220,8 @@ _URL_CHECK_HEADERS = {
 
 def _validate_url(url: str) -> bool:
     """Quick check that a URL is reachable."""
-    if not url or "google.com/search" in url:
-        return True
+    if not url:
+        return False
     try:
         resp = requests.head(url, headers=_URL_CHECK_HEADERS, timeout=8,
                              allow_redirects=True)
@@ -236,15 +236,12 @@ def _validate_url(url: str) -> bool:
         return True
 
 
-def _url_with_fallback(url: str, title: str, source: str) -> str:
-    """Return url if valid, else Google Search fallback."""
+def _url_with_fallback(url: str, title: str, source: str) -> str | None:
+    """Return url if valid, else None (skip this item)."""
     if _validate_url(url):
         return url
-    from urllib.parse import quote
-    search_q = f'"{title}" {source}'.strip()
-    fallback = f"https://www.google.com/search?q={quote(search_q)}"
-    logger.info(f"URL replaced with Google Search fallback: {title[:50]}")
-    return fallback
+    logger.info(f"URL unreachable, skipping: {title[:50]}")
+    return None
 
 
 class NewsItem:
@@ -383,6 +380,8 @@ def fetch_rss_feeds(max_age_days: int = 14) -> list[NewsItem]:
 
                 final_url = actual_link if actual_link != link else link
                 final_url = _url_with_fallback(final_url, title, feed_config["name"])
+                if not final_url:
+                    continue
 
                 item = NewsItem(
                     title=title,
@@ -460,6 +459,8 @@ def _search_serpapi(queries: list) -> list[NewsItem]:
                     continue
 
                 final_url = _url_with_fallback(url, title_text, result.get("source", {}).get("name", "Web"))
+                if not final_url:
+                    continue
                 item = NewsItem(
                     title=title_text,
                     url=final_url,
@@ -520,16 +521,16 @@ def _search_google_news_rss(queries: list) -> list[NewsItem]:
                     logger.info(f"Skip old event article: {title_text[:50]}")
                     continue
 
-                # Try fast HEAD redirect first, fall back to Google Search
+                # Resolve Google News URL to real article URL
                 resolved = _resolve_url_fast(gn_url)
-                if resolved:
-                    final_url = resolved
-                    url_date = _extract_date_from_url(resolved)
-                    if url_date and int(url_date[:4]) >= 2026:
-                        pub_date = url_date
-                else:
-                    search_q = f'"{title_text}" {gn_source}'.strip()
-                    final_url = f"https://www.google.com/search?q={quote(search_q)}"
+                if not resolved:
+                    logger.info(f"Skip unresolvable: {title_text[:50]}")
+                    continue
+
+                final_url = resolved
+                url_date = _extract_date_from_url(resolved)
+                if url_date and int(url_date[:4]) >= 2026:
+                    pub_date = url_date
 
                 if _url_date_conflicts(final_url, pub_date):
                     continue
