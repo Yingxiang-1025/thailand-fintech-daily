@@ -148,17 +148,34 @@ def _resolve_google_news_url(gn_url: str, skip_decode: bool = False) -> str:
 
 
 def _resolve_url_fast(gn_url: str) -> str | None:
-    """Fast URL resolution via HEAD redirect (no googlenewsdecoder)."""
+    """Multi-strategy URL resolution for Google News URLs."""
     if "news.google.com" not in gn_url:
         return gn_url
+    _ua = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+    # Strategy 1: HEAD redirect
     try:
-        resp = requests.head(
-            gn_url, allow_redirects=True, timeout=5,
-            headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"},
-        )
+        resp = requests.head(gn_url, allow_redirects=True, timeout=5, headers=_ua)
         final = resp.url
         if final and "news.google.com" not in final and "consent.google" not in final:
             return final
+    except Exception:
+        pass
+    # Strategy 2: GET redirect (some servers block HEAD)
+    try:
+        resp = requests.get(gn_url, allow_redirects=True, timeout=8,
+                           headers=_ua, stream=True)
+        final = resp.url
+        resp.close()
+        if final and "news.google.com" not in final and "consent.google" not in final:
+            return final
+    except Exception:
+        pass
+    # Strategy 3: googlenewsdecoder (slower but more reliable)
+    try:
+        from googlenewsdecoder import new_decoderv1
+        decoded = new_decoderv1(gn_url, interval=5)
+        if decoded.get("status") and decoded.get("decoded_url"):
+            return decoded["decoded_url"]
     except Exception:
         pass
     return None
