@@ -25,6 +25,7 @@
         <a href="pages/paypaya.html">PAYPAYA专题</a>
         <a href="pages/overview.html">市场概览</a>
         <a href="pages/regulation.html">监管动态</a>
+        <a href="pages/virtual-bank.html">虚拟银行</a>
         <a href="pages/credit-card.html">信用卡</a>
         <a href="pages/digital-lending.html">数字信贷</a>
         <a href="pages/cash-loan.html">现金贷</a>
@@ -85,6 +86,12 @@
             <div class="dash-card-title">监管动态{% if sections.regulation | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} <span class="card-tag tag-new" style="font-size:0.65rem; vertical-align:middle;">今日新增</span>{% endif %}</div>
             <div class="dash-card-desc">泰国央行（BOT）、SEC 与合规政策动态</div>
             <div class="dash-card-count">{{ sections.regulation | default([]) | length }} 条新闻 →</div>
+        </a>
+        <a class="dash-card{% if sections.virtual_bank | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} card-new{% endif %}" href="pages/virtual-bank.html" style="border-left:3px solid #8b5cf6;">
+            <div class="dash-card-icon">🏛️</div>
+            <div class="dash-card-title">虚拟银行{% if sections.virtual_bank | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} <span class="card-tag tag-new" style="font-size:0.65rem; vertical-align:middle;">今日新增</span>{% endif %}</div>
+            <div class="dash-card-desc">虚拟银行牌照、SCBX BankX、CP/KTB Virtual Bank</div>
+            <div class="dash-card-count">{{ sections.virtual_bank | default([]) | length }} 条新闻 →</div>
         </a>
         <a class="dash-card{% if sections.credit_card | default([]) | selectattr('fetched_date', 'equalto', today_str) | list | length > 0 %} card-new{% endif %}" href="pages/credit-card.html">
             <div class="dash-card-icon">💳</div>

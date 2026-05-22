@@ -22,7 +22,7 @@ MAX_PUSH_ITEMS = 8
 MAX_REGULATION_IN_PUSH = 2
 MAX_OTHER_IN_PUSH = 2
 
-PEER_SECTIONS = {"bnpl", "e_wallet", "cash_loan", "digital_bank"}
+PEER_SECTIONS = {"bnpl", "e_wallet", "cash_loan", "digital_bank", "virtual_bank"}
 
 WECHAT_WEBHOOK_URL = (
     "https://qyapi.weixin.qq.com/cgi-bin/webhook/send"
@@ -34,12 +34,13 @@ WEBSITE_URL = "https://yingxiang-1025.github.io/thailand-fintech-daily/"
 SECTION_META = {
     "paypaya":        {"priority": 0, "label": "🔥 PAYPAYA",  "emoji": "🔥", "show_all": True},
     "regulation":     {"priority": 1, "label": "监管动态",     "emoji": "📋", "show_all": True},
-    "bnpl":           {"priority": 2, "label": "BNPL同行",     "emoji": "🛒", "show_all": True},
-    "e_wallet":       {"priority": 3, "label": "电子钱包",     "emoji": "📲", "show_all": True},
-    "cash_loan":      {"priority": 4, "label": "现金贷",       "emoji": "💵", "show_all": True},
-    "digital_lending":{"priority": 5, "label": "数字信贷",     "emoji": "💰", "show_all": False},
-    "credit_card":    {"priority": 6, "label": "信用卡",       "emoji": "💳", "show_all": False},
-    "digital_bank":   {"priority": 7, "label": "数字银行",     "emoji": "📱", "show_all": False},
+    "virtual_bank":   {"priority": 2, "label": "虚拟银行",     "emoji": "🏛️", "show_all": True},
+    "bnpl":           {"priority": 3, "label": "BNPL同行",     "emoji": "🛒", "show_all": True},
+    "e_wallet":       {"priority": 4, "label": "电子钱包",     "emoji": "📲", "show_all": True},
+    "cash_loan":      {"priority": 5, "label": "现金贷",       "emoji": "💵", "show_all": True},
+    "digital_lending":{"priority": 6, "label": "数字信贷",     "emoji": "💰", "show_all": False},
+    "credit_card":    {"priority": 7, "label": "信用卡",       "emoji": "💳", "show_all": False},
+    "digital_bank":   {"priority": 8, "label": "数字银行",     "emoji": "📱", "show_all": False},
 }
 
 _DEFAULT_META = {"priority": 99, "label": "金融科技", "emoji": "📊", "show_all": False}
@@ -47,6 +48,7 @@ _DEFAULT_META = {"priority": 99, "label": "金融科技", "emoji": "📊", "show
 CONNECTORS = {
     "paypaya": "PAYPAYA方面，",
     "regulation": "监管层面，",
+    "virtual_bank": "虚拟银行方面，",
     "bnpl": "BNPL/同行竞品方面，",
     "e_wallet": "电子钱包领域，",
     "cash_loan": "现金贷方面，",

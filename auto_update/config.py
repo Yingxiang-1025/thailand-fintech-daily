@@ -128,20 +128,19 @@ SEARCH_QUERIES = [
 
 SECTION_KEYWORDS = {
     "regulation": [
-        "ธปท fintech", "ธปท สินเชื่อ", "ธปท ดิจิทัล",
-        "BOT fintech", "BOT lending", "BOT digital",
-        "Bank of Thailand fintech", "Bank of Thailand lending",
-        "SEC Thailand fintech", "กลต fintech",
-        "regulation fintech", "regulation lending", "regulation digital",
         "กฎหมายสินเชื่อ", "กฎหมายฟินเทค", "กฎหมายดิจิทัล",
-        "consumer protection fintech", "licensing fintech", "licensing lending",
-        "PDPA", "พรบ คุ้มครองข้อมูล",
+        "กฎเกณฑ์", "ใบอนุญาต", "regulation", "regulatory",
+        "licensing", "compliance", "กำกับดูแล",
+        "consumer protection", "PDPA", "พรบ คุ้มครองข้อมูล",
+        "sandbox", "แซนด์บ็อกซ์",
     ],
     "credit_card": [
         "credit card", "บัตรเครดิต", "Mastercard", "Visa", "KBank card", "SCB card",
     ],
     "digital_lending": [
-        "digital lending", "สินเชื่อดิจิทัล", "MSME", "SME", "fintech lending", "Ascend Money",
+        "สินเชื่อดิจิทัล", "MSME", "SME lending", "SME loan",
+        "P2P lending", "peer-to-peer lending", "crowdlending",
+        "สินเชื่อ SME", "สินเชื่อ MSME", "revenue-based financing",
     ],
     "cash_loan": [
         "cash loan", "เงินกู้", "สินเชื่อ", "personal loan", "Speedy Cash", "MoneyThunder",
@@ -159,9 +158,15 @@ SECTION_KEYWORDS = {
     "e_wallet": [
         "e-wallet", "TrueMoney", "PromptPay", "Rabbit LINE Pay", "digital wallet",
         "กระเป๋าเงิน", "QR payment", "mobile payment", "digital payment",
+        "Ascend Money", "Wise", "cross-border payment",
+    ],
+    "virtual_bank": [
+        "virtual bank", "วิร์ชวลแบงก์", "virtual banking",
+        "BankX", "BankX Bank", "virtual bank license",
+        "ใบอนุญาตธนาคารเสมือน",
     ],
     "digital_bank": [
-        "digital bank", "LINE BK", "KBank", "SCB", "Kasikorn", "neobank", "ธนาคารดิจิทัล",
+        "digital bank", "LINE BK", "KBank", "Kasikorn", "neobank", "ธนาคารดิจิทัล",
     ],
     "paypaya": [
         "PAYPAYA", "paypaya", "เพย์พาญ่า", "Akulaku X", "akulaku x",
@@ -169,6 +174,32 @@ SECTION_KEYWORDS = {
         "แอปเงินกู้ถูกกฎหมาย", "สินเชื่อออนไลน์ถูกกฎหมาย",
     ],
 }
+
+# Regulation compound matching: regulator + financial keyword
+REGULATION_REGULATORS = [
+    "ธปท", "Bank of Thailand", "BOT",
+    "ก.ล.ต.", "กลต", "SEC Thailand", "SEC",
+    "คปภ", "OIC",
+]
+REGULATION_FINANCE_KEYWORDS = [
+    "สินเชื่อ", "เงินกู้", "ฟินเทค", "fintech", "lending", "payment",
+    "ดิจิทัล", "digital", "license", "ใบอนุญาต", "กฎเกณฑ์",
+    "regulation", "regulatory", "policy", "นโยบาย", "กำกับดูแล",
+    "ธนาคาร", "bank", "insurance", "ประกัน", "กองทุน", "fund",
+    "e-wallet", "BNPL", "virtual bank", "crypto", "คริปโท",
+    "ชำระเงิน", "บัญชี", "สถาบันการเงิน", "financial institution",
+]
+
+# Non-fintech BOT/regulatory news to exclude
+REGULATION_EXCLUDE_KEYWORDS = [
+    "กรรมการผู้ทรงคุณวุฒิ", "qualified directors", "board appointment",
+    "ทองคำ", "gold trading", "gold price",
+    "ค่าธรรมเนียม", "bank fee",
+    "เฟด", "Federal Reserve", "Fed rate", "Fed policy",
+    "พ.ร.ก. เงินกู้", "เงินกู้ 4 แสนล้าน", "borrowing decree",
+    "GDP", "inflation rate", "อัตราเงินเฟ้อ",
+    "quick commerce", "e-commerce market",
+]
 
 GLOBAL_KEYWORDS = [
     # English core
@@ -215,9 +246,10 @@ EXCLUDE_KEYWORDS = [
     # Philippines
     "BSP Philippines", "Bangko Sentral", "Philippines fintech",
     "GCash", "Maya Philippines", "UnionBank Philippines",
-    # Noise
+    # Non-fintech macro/noise
     "papaya fruit", "papaya tree", "pad thai", "Gordon Ramsay",
     "gangster", "murder", "Koh Samui crime",
+    "quick commerce", "Quick Commerce",
 ]
 
 # Maximum number of regulation items in daily/monthly summaries
@@ -231,6 +263,7 @@ SECTION_PAGES = {
     "cash_loan": "cash-loan.html",
     "bnpl": "bnpl.html",
     "e_wallet": "e-wallet.html",
+    "virtual_bank": "virtual-bank.html",
     "digital_bank": "digital-bank.html",
     "paypaya": "paypaya.html",
 }
@@ -243,6 +276,7 @@ SECTION_TAG_CLASSES = {
     "cash_loan": "tag-product",
     "bnpl": "tag-market",
     "e_wallet": "tag-product",
+    "virtual_bank": "tag-market",
     "digital_bank": "tag-product",
     "paypaya": "tag-akulaku",
 }
@@ -254,6 +288,7 @@ SECTION_DISPLAY_NAMES = {
     "cash_loan": "现金贷/สินเชื่อส่วนบุคคล",
     "bnpl": "先买后付",
     "e_wallet": "电子钱包",
+    "virtual_bank": "虚拟银行",
     "digital_bank": "数字银行",
     "paypaya": "PAYPAYA专题",
 }

@@ -8,11 +8,29 @@ from config import (
     OPENAI_API_KEY,
     OPENAI_BASE_URL,
     OPENAI_MODEL,
+    REGULATION_EXCLUDE_KEYWORDS,
+    REGULATION_FINANCE_KEYWORDS,
+    REGULATION_REGULATORS,
     SECTION_KEYWORDS,
 )
 from fetcher import NewsItem
 
 logger = logging.getLogger(__name__)
+
+SPECIFIC_SECTIONS = {"cash_loan", "bnpl", "e_wallet", "digital_bank",
+                     "virtual_bank", "paypaya", "credit_card", "regulation"}
+
+
+def _is_regulation(text: str) -> bool:
+    """Compound regulation matching: regulator keyword + financial keyword."""
+    text_lower = text.lower()
+    if any(kw.lower() in text_lower for kw in REGULATION_EXCLUDE_KEYWORDS):
+        return False
+    has_regulator = any(kw.lower() in text_lower for kw in REGULATION_REGULATORS)
+    if not has_regulator:
+        return False
+    has_finance = any(kw.lower() in text_lower for kw in REGULATION_FINANCE_KEYWORDS)
+    return has_finance
 
 
 def assign_sections(items: list[NewsItem]) -> list[NewsItem]:
@@ -21,14 +39,27 @@ def assign_sections(items: list[NewsItem]) -> list[NewsItem]:
         text = (item.title + " " + item.summary).lower()
         text_raw = item.title + " " + item.summary
         matched = []
+
         for section, keywords in SECTION_KEYWORDS.items():
+            if section == "regulation":
+                if _is_regulation(text_raw):
+                    matched.append("regulation")
+                continue
             if any(kw.lower() in text for kw in keywords):
                 matched.append(section)
-        item.sections = matched if matched else ["digital_lending"]
 
-        if "paypaya" in text or "เพย์พาญ่า" in text_raw or "akulaku x" in text or "กู้เงินถูกกฎหมาย" in text_raw or "สินเชื่อถูกกฎหมาย" in text_raw or "prompt cash" in text:
-            if "paypaya" not in item.sections:
-                item.sections.append("paypaya")
+        # PAYPAYA explicit detection
+        if "paypaya" in text or "เพย์พาญ่า" in text_raw or "akulaku x" in text \
+                or "กู้เงินถูกกฎหมาย" in text_raw or "สินเชื่อถูกกฎหมาย" in text_raw \
+                or "prompt cash" in text:
+            if "paypaya" not in matched:
+                matched.append("paypaya")
+
+        # Priority: remove digital_lending when a more specific section is matched
+        if "digital_lending" in matched and len(set(matched) & SPECIFIC_SECTIONS) > 0:
+            matched = [s for s in matched if s != "digital_lending"]
+
+        item.sections = matched if matched else ["digital_lending"]
 
     return items
 
@@ -98,12 +129,13 @@ def mark_major_news(items: list[NewsItem], top_n: int = 3) -> list[NewsItem]:
             "กู้เงินถูกกฎหมาย", "SCBX"],
         4: [
             "ธปท", "Bank of Thailand", "SEC Thailand", "กลต",
-            "regulation fintech", "regulation lending",
+            "regulation", "regulatory",
+            "virtual bank", "วิร์ชวลแบงก์", "BankX",
         ],
         3: [
             "TrueMoney", "PromptPay", "LINE BK", "Atome", "ShopBack",
             "Grab PayLater", "Ascend Money", "KBank", "Kasikorn",
-            "Kredivo", "Home Credit",
+            "Home Credit",
         ],
         1: ["growth", "market", "report", "launch", "partnership"],
     }
