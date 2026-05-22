@@ -267,13 +267,12 @@ def _is_relevant(title: str, summary: str, source: str = "") -> bool:
     if match_count < 1:
         return False
 
-    # Geographic filter for regional sources
-    if source and any(rs.lower() in source.lower() for rs in REGIONAL_SOURCES):
-        all_text = text.lower()
-        has_geo = any(gk.lower() in all_text for gk in THAILAND_GEO_KEYWORDS)
-        if not has_geo:
-            logger.debug(f"Filtered regional source (no TH geo): {title[:50]}")
-            return False
+    # All articles must contain at least one Thailand geographic keyword
+    all_text = text.lower()
+    has_geo = any(gk.lower() in all_text for gk in THAILAND_GEO_KEYWORDS)
+    if not has_geo:
+        logger.debug(f"Filtered (no TH geo): {title[:50]}")
+        return False
 
     return True
 
