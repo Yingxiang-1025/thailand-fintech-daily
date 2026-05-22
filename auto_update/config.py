@@ -175,19 +175,26 @@ SECTION_KEYWORDS = {
         "สินเชื่อดิจิทัล", "MSME", "SME lending", "SME loan",
         "P2P lending", "peer-to-peer lending", "crowdlending",
         "สินเชื่อ SME", "สินเชื่อ MSME", "revenue-based financing",
+        "auto financing", "สินเชื่อรถ", "สินเชื่อรถยนต์",
+        "มอเตอร์ไซค์", "motorcycle loan", "truck loan",
+        "hire purchase", "เช่าซื้อ",
     ],
     "cash_loan": [
-        "cash loan", "เงินกู้", "สินเชื่อ", "personal loan", "Speedy Cash", "MoneyThunder",
-        "สินเชื่อส่วนบุคคล", "สินเชื่อเงินสด", "กู้เงิน",
-        "สินเชื่อออนไลน์", "กู้เงินด่วน", "เงินด่วน", "อนุมัติเร็ว",
+        "cash loan", "personal loan", "Speedy Cash", "MoneyThunder",
+        "สินเชื่อ", "เงินกู้", "กู้เงิน",
+        "สินเชื่อส่วนบุคคล", "สินเชื่อเงินสด", "สินเชื่อออนไลน์",
+        "กู้เงินด่วน", "เงินด่วน", "อนุมัติเร็ว",
         "สินเชื่อถูกกฎหมาย", "แอปกู้เงิน", "แอปสินเชื่อ",
-        "ดอกเบี้ย", "interest rate",
+        "nano finance", "นาโนไฟแนนซ์", "สินเชื่อนาโน",
     ],
     "bnpl": [
         "BNPL", "paylater", "pay later", "Atome", "ShopBack", "Grab PayLater",
         "buy now pay later", "ผ่อนชำระ", "ผ่อน 0%",
         "ผ่อนสินค้า", "ผ่อนจ่าย", "installment", "ผ่อนได้",
         "ซื้อก่อนจ่ายทีหลัง",
+        "ผ่อนไม่มีบัตร", "ผ่อนออนไลน์", "แบ่งจ่าย",
+        "0% installment", "ผ่อนดอกเบี้ย 0", "split payment",
+        "Akulaku", "Tendopay", "Billease",
     ],
     "e_wallet": [
         "e-wallet", "TrueMoney", "PromptPay", "Rabbit LINE Pay", "digital wallet",
@@ -195,9 +202,9 @@ SECTION_KEYWORDS = {
         "Ascend Money", "Wise", "cross-border payment",
     ],
     "virtual_bank": [
-        "virtual bank", "วิร์ชวลแบงก์", "virtual banking",
+        "virtual bank", "วิร์ชวลแบงก์", "เวอร์ชวลแบงก์", "virtual banking",
         "BankX", "BankX Bank", "virtual bank license",
-        "ใบอนุญาตธนาคารเสมือน",
+        "ใบอนุญาตธนาคารเสมือน", "CLICX",
     ],
     "digital_bank": [
         "digital bank", "LINE BK", "KBank", "Kasikorn", "neobank", "ธนาคารดิจิทัล",
@@ -222,17 +229,13 @@ REGULATION_FINANCE_KEYWORDS = [
     "ธนาคาร", "bank", "insurance", "ประกัน", "กองทุน", "fund",
     "e-wallet", "BNPL", "virtual bank", "crypto", "คริปโท",
     "ชำระเงิน", "บัญชี", "สถาบันการเงิน", "financial institution",
+    "ปล่อยกู้", "ลูกหนี้", "สภาพคล่อง", "debt restructuring",
 ]
 
-# Non-fintech BOT/regulatory news to exclude
+# Items that should NOT trigger regulation section even if regulator is mentioned
 REGULATION_EXCLUDE_KEYWORDS = [
-    "กรรมการผู้ทรงคุณวุฒิ", "qualified directors", "board appointment",
-    "ทองคำ", "gold trading", "gold price",
-    "ค่าธรรมเนียม", "bank fee",
     "เฟด", "Federal Reserve", "Fed rate", "Fed policy",
-    "พ.ร.ก. เงินกู้", "เงินกู้ 4 แสนล้าน", "borrowing decree",
     "GDP", "inflation rate", "อัตราเงินเฟ้อ",
-    "quick commerce", "e-commerce market",
 ]
 
 GLOBAL_KEYWORDS = [
@@ -284,6 +287,18 @@ EXCLUDE_KEYWORDS = [
     "papaya fruit", "papaya tree", "pad thai", "Gordon Ramsay",
     "gangster", "murder", "Koh Samui crime",
     "quick commerce", "Quick Commerce",
+    # Government borrowing / macro fiscal
+    "พ.ร.ก. เงินกู้", "เงินกู้ 4 แสนล้าน", "borrowing decree",
+    "หนี้สาธารณะ", "public debt ceiling", "ศาลรัฐธรรมนูญ",
+    "constitutional court", "พระราชกำหนด",
+    # Housing / real estate (not fintech)
+    "LTV", "loan-to-value", "housing loan", "mortgage",
+    "สินเชื่อบ้าน", "ที่อยู่อาศัย", "อสังหา", "อสังหาริมทรัพย์",
+    "房贷再融资", "housing market",
+    # Non-fintech BOT (gold, fees, directors)
+    "ทองคำ", "gold trading", "gold price",
+    "กรรมการผู้ทรงคุณวุฒิ", "qualified directors", "board appointment",
+    "ค่าธรรมเนียม", "bank fee", "fee income",
 ]
 
 # Maximum number of regulation items in daily/monthly summaries

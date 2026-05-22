@@ -138,6 +138,23 @@ def _resolve_google_news_url(gn_url: str, skip_decode: bool = False) -> str:
     return gn_url
 
 
+def _resolve_url_fast(gn_url: str) -> str | None:
+    """Fast URL resolution via HEAD redirect (no googlenewsdecoder)."""
+    if "news.google.com" not in gn_url:
+        return gn_url
+    try:
+        resp = requests.head(
+            gn_url, allow_redirects=True, timeout=5,
+            headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"},
+        )
+        final = resp.url
+        if final and "news.google.com" not in final and "consent.google" not in final:
+            return final
+    except Exception:
+        pass
+    return None
+
+
 def _extract_date_from_url(url: str) -> str | None:
     """Extract YYYY-MM-DD from a URL path like /2026/05/10/article."""
     m = re.search(r"/(\d{4})/(\d{2})/(\d{2})/", url)
@@ -477,9 +494,13 @@ def _search_google_news_rss(queries: list) -> list[NewsItem]:
                     logger.info(f"Skip old event article: {title_text[:50]}")
                     continue
 
-                # Use Google Search fallback instead of slow GN URL decoding
-                search_q = f'"{title_text}" {gn_source}'.strip()
-                final_url = f"https://www.google.com/search?q={quote(search_q)}"
+                # Try fast HEAD redirect first, fall back to Google Search
+                resolved = _resolve_url_fast(gn_url)
+                if resolved:
+                    final_url = resolved
+                else:
+                    search_q = f'"{title_text}" {gn_source}'.strip()
+                    final_url = f"https://www.google.com/search?q={quote(search_q)}"
 
                 item = NewsItem(
                     title=title_text,
@@ -517,17 +538,31 @@ def save_news(items: list[dict]):
 
 
 def _title_key(title: str) -> str:
-    """Extract first 25 chars of cleaned title for similarity matching."""
+    """Extract first 35 chars of cleaned title for similarity matching."""
     t = re.sub(r"^【[^】]+】\s*", "", title)
     t = re.sub(r"\s*-\s*[^-]+$", "", t)
-    return t.strip().lower()[:25]
+    return t.strip().lower()[:35]
+
+
+def _title_keys_for_item(item: dict) -> set[str]:
+    """Generate multiple title keys from an item for broader dedup."""
+    keys = set()
+    for field in ("title", "title_cn", "title_zh"):
+        val = item.get(field, "")
+        if val:
+            k = _title_key(val)
+            if k and len(k) > 10:
+                keys.add(k)
+    return keys
 
 
 def deduplicate(new_items: list[NewsItem], existing: list[dict]) -> list[NewsItem]:
     """Remove duplicates based on URL and title similarity."""
     existing_urls = {item["url"] for item in existing}
-    existing_keys = {_title_key(item.get("title", "")) for item in existing}
-    seen_keys = set()
+    existing_keys: set[str] = set()
+    for item in existing:
+        existing_keys.update(_title_keys_for_item(item))
+    seen_keys: set[str] = set()
     result = []
     for item in new_items:
         if item.url in existing_urls:
