@@ -71,9 +71,21 @@ RSS_FEEDS = [
     # ── Regulation (broader scope) ──
     {"name": "GN BOT Regulation", "url": "https://news.google.com/rss/search?q=%E0%B8%98%E0%B8%9B%E0%B8%97+%E0%B8%81%E0%B8%8E%E0%B9%80%E0%B8%81%E0%B8%93%E0%B8%91%E0%B9%8C+%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD&hl=th&gl=TH&ceid=TH:th", "category": "regulation"},
     {"name": "GN SEC Fintech", "url": "https://news.google.com/rss/search?q=%E0%B8%81%E0%B8%A5%E0%B8%95+%E0%B8%9F%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%97%E0%B8%84+%E0%B8%94%E0%B8%B4%E0%B8%88%E0%B8%B4%E0%B8%97%E0%B8%B1%E0%B8%A5&hl=th&gl=TH&ceid=TH:th", "category": "regulation"},
-    # ── Regional English fintech media (geo-filtered) ──
+    # ── Direct RSS: Thai media (reliable, direct URLs) ──
+    {"name": "Prachachat Direct", "url": "https://www.prachachat.net/feed", "category": "mainstream"},
+    {"name": "The Standard", "url": "https://thestandard.co/feed/", "category": "mainstream"},
+    {"name": "Khaosod Online", "url": "https://www.khaosod.co.th/feed", "category": "mainstream"},
+    {"name": "Thansettakij", "url": "https://www.thansettakij.com/feed", "category": "mainstream"},
+    {"name": "Kaohoon Direct", "url": "https://www.kaohoon.com/feed", "category": "mainstream"},
+    {"name": "Daily News Finance", "url": "https://www.dailynews.co.th/rss/economy", "category": "mainstream"},
+    # ── Direct RSS: English media (reliable, direct URLs) ──
     {"name": "Fintech News SG", "url": "https://fintechnews.sg/feed/", "category": "fintech"},
     {"name": "e27", "url": "https://e27.co/feed/", "category": "fintech"},
+    {"name": "Rest of World", "url": "https://restofworld.org/feed/latest/", "category": "fintech"},
+    {"name": "The Asian Banker", "url": "https://www.theasianbanker.com/rss", "category": "fintech"},
+    {"name": "Crowdfund Insider", "url": "https://www.crowdfundinsider.com/feed/", "category": "fintech"},
+    {"name": "Fintech Futures", "url": "https://www.fintechfutures.com/feed/", "category": "fintech"},
+    {"name": "PYMNTS", "url": "https://www.pymnts.com/feed/", "category": "fintech"},
     {"name": "GN DealStreetAsia TH", "url": "https://news.google.com/rss/search?q=site:dealstreetasia.com+Thailand+fintech+OR+lending+OR+bank&hl=en&gl=TH&ceid=TH:en", "category": "fintech"},
     {"name": "GN KrASIA TH", "url": "https://news.google.com/rss/search?q=site:kr-asia.com+Thailand+fintech&hl=en&gl=TH&ceid=TH:en", "category": "fintech"},
     {"name": "GN Nikkei Thailand", "url": "https://news.google.com/rss/search?q=site:asia.nikkei.com+Thailand+fintech+OR+bank+OR+payment&hl=en&gl=TH&ceid=TH:en", "category": "fintech"},
@@ -156,6 +168,17 @@ SEARCH_QUERIES = [
     "สินเชื่อ ธปท กำกับดูแล ล่าสุด",
     "แอปกู้เงิน ถูกกฎหมาย ล่าสุด ไทย",
     "ชำระเงินดิจิทัล ไทย ล่าสุด",
+    # ── Additional coverage ──
+    "Thailand credit card spending trend 2026",
+    "Thailand BNPL installment e-commerce 2026",
+    "Thailand fintech regulation BOT 2026",
+    "Thailand micro lending nano finance 2026",
+    "Thailand Ascend Money TrueMoney expansion 2026",
+    "ธปท สินเชื่อ ดิจิทัล ล่าสุด 2026",
+    "สินเชื่อรถยนต์ มอเตอร์ไซค์ ไทย 2026",
+    "บัตรเครดิต โปรโมชั่น ไทย 2026",
+    "ธนาคาร ดิจิทัล เปิดตัว ไทย 2026",
+    "เวอร์ชวลแบงก์ CLICX BankX ไทย 2026",
 ]
 
 # ─── Keyword Filters ────────────────────────────────────
