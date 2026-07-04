@@ -1,9 +1,4 @@
 {
-  "2026-05-31": [
-    "https://www.thaipbs.or.th/news/content/506535",
-    "https://www.prachachat.net/finance/news-2015046",
-    "https://thestandard.co/bot-virtual-bank-debt-control/"
-  ],
   "2026-06-02": [
     "https://www.thailand-business-news.com/banking/310796-asia-pacific-fintech-boom-leaves-millions-behind"
   ],
@@ -190,5 +185,15 @@
   "2026-07-03": [
     "https://www.prachachat.net/finance/news-2029955",
     "https://www.kaohoon.com/tag/%E0%B8%9E%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%95%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD/page/3"
+  ],
+  "2026-07-04": [
+    "https://www.prachachat.net/finance/news-2032111",
+    "https://mgronline.com/stockmarket/detail/9690000064091",
+    "https://mgronline.com/stockmarket/detail/9690000064211",
+    "https://www.globenewswire.com/news-release/2026/07/03/3321689/28124/en/Thailand-Alternative-Lending-Market-to-Reach-7-06-Billion-by-2026-with-a-12-9-Annual-Growth-Rate.html",
+    "https://www.kaohoon.com/tag/%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%84%E0%B8%99%E0%B8%A5%E0%B8%B0%E0%B8%84%E0%B8%A3%E0%B8%B6%E0%B9%88%E0%B8%87",
+    "https://www.kaohoon.com/news/local/843586",
+    "https://www.kaohoon.com/news/843668",
+    "https://thestandard.co/pm-loan-farmers-reduce-costs/"
   ]
 }
