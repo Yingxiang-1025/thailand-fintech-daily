@@ -1,11 +1,4 @@
 {
-  "2026-06-07": [
-    "https://today.line.me/th/v3/article/8nL0zOR",
-    "https://isranews.org/article/isranews-news/147286-isranews-1000-1000-636.html",
-    "https://www.thansettakij.com/economy/660751",
-    "https://www.khaosod.co.th/around-thailand/news_10273057",
-    "https://www.prachachat.net/economic/news-2018008"
-  ],
   "2026-06-08": [
     "https://www.vietnam.vn/th/momo-khang-dinh-vai-tro-fintech-ket-noi-he-sinh-thai-tai-chinh-so-toan-dien",
     "https://www.thailand-business-news.com/banking/276222-can-thailands-fintech-ecosystem-overcome-regional-fragmentation"
@@ -205,5 +198,13 @@
     "https://www.kaohoon.com/column/845283",
     "https://myc.my/articles/5168/thailand-rolls-out-cross-border-qr-payments-letting-tourists-pay-like-a-local",
     "https://www.prachachat.net/finance/news-2034069"
+  ],
+  "2026-07-12": [
+    "https://thestandard.co/bot-grey-money-deposit-bnpl/",
+    "https://www.infoquest.co.th/2026/613873",
+    "https://www.kaohoon.com/news/local/845647",
+    "https://www.kaohoon.com/news/local/845645",
+    "https://www.nationthailand.com/business/economy/40068514",
+    "https://www.nationthailand.com/business/banking-finance/40068531"
   ]
 }
