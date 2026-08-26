@@ -1,6 +1,6 @@
 """
 Built-in English/Thai→Chinese translation for fintech news.
-Uses Google Translate (free, via deep-translator) with MyMemoryTranslator fallback.
+Uses Google Translate (free, via deep-translator) with direct API and MyMemory fallbacks.
 """
 import logging
 import time
@@ -41,6 +41,29 @@ def _get_fallback_translator(text: str):
         return _fallback_translator_en
 
 
+def _translate_direct_api(text: str) -> str | None:
+    """Direct Google Translate API call via httpx (different endpoint from deep-translator)."""
+    try:
+        import httpx
+    except ImportError:
+        return None
+    source = "th" if _has_thai(text) else "auto"
+    params = {"client": "gtx", "sl": source, "tl": "zh-CN", "dt": "t", "q": text[:4500]}
+    try:
+        resp = httpx.get(
+            "https://translate.googleapis.com/translate_a/single",
+            params=params, timeout=15,
+        )
+        if resp.status_code == 200:
+            data = resp.json()
+            result = "".join(seg[0] for seg in data[0] if seg[0])
+            if result and _has_chinese(result):
+                return result
+    except Exception as e:
+        logger.debug(f"Direct API failed: {e}")
+    return None
+
+
 def _has_chinese(text: str) -> bool:
     return any("\u4e00" <= c <= "\u9fff" for c in (text or ""))
 
@@ -50,16 +73,18 @@ def _has_thai(text: str) -> bool:
 
 
 def google_translate(text: str, retries: int = 2) -> str:
-    """Translate text to Chinese via free Google Translate, with MyMemory fallback.
-    Auto-detects source language (English/Thai).
-    Retries if result contains no Chinese characters."""
+    """Translate text to Chinese. Fallback chain:
+    1. deep-translator GoogleTranslator
+    2. Direct translate.googleapis.com/translate_a/single
+    3. MyMemoryTranslator
+    """
     if not text or not text.strip():
         return text
     if _has_chinese(text):
         return text
     chunk = text[:4500] if len(text) > 4500 else text
 
-    # Try Google Translate first
+    # Layer 1: deep-translator Google
     translator = _get_translator()
     if translator:
         for attempt in range(retries + 1):
@@ -75,7 +100,13 @@ def google_translate(text: str, retries: int = 2) -> str:
                 if attempt < retries:
                     time.sleep(2)
 
-    # Fallback: MyMemoryTranslator (500-char limit, rate-limited to ~5 req/s)
+    # Layer 2: direct googleapis endpoint
+    result = _translate_direct_api(chunk)
+    if result:
+        time.sleep(0.5)
+        return result
+
+    # Layer 3: MyMemoryTranslator (500-char limit, rate-limited to ~5 req/s)
     fallback_chunk = chunk[:450] if len(chunk) > 450 else chunk
     for attempt in range(3):
         try:
