@@ -1,7 +1,6 @@
 """
-Built-in English→Chinese translation for fintech news.
-Uses Google Translate (free, via deep-translator) for full-sentence translation.
-Falls back to clean English if translation unavailable.
+Built-in English/Thai→Chinese translation for fintech news.
+Uses Google Translate (free, via deep-translator) with MyMemoryTranslator fallback.
 """
 import logging
 import time
@@ -9,6 +8,8 @@ import time
 logger = logging.getLogger(__name__)
 
 _translator = None
+_fallback_translator_th = None
+_fallback_translator_en = None
 
 
 def _get_translator():
@@ -23,34 +24,76 @@ def _get_translator():
     return _translator
 
 
+def _get_fallback_translator(text: str):
+    """Get MyMemoryTranslator with correct source language based on text content."""
+    global _fallback_translator_th, _fallback_translator_en
+    from deep_translator import MyMemoryTranslator
+
+    if _has_thai(text):
+        if _fallback_translator_th is None:
+            _fallback_translator_th = MyMemoryTranslator(source="th-TH", target="zh-CN")
+            logger.info("MyMemory fallback initialized (Thai→Chinese)")
+        return _fallback_translator_th
+    else:
+        if _fallback_translator_en is None:
+            _fallback_translator_en = MyMemoryTranslator(source="en-GB", target="zh-CN")
+            logger.info("MyMemory fallback initialized (English→Chinese)")
+        return _fallback_translator_en
+
+
 def _has_chinese(text: str) -> bool:
     return any("\u4e00" <= c <= "\u9fff" for c in (text or ""))
 
 
+def _has_thai(text: str) -> bool:
+    return any("\u0e00" <= c <= "\u0e7f" for c in (text or ""))
+
+
 def google_translate(text: str, retries: int = 2) -> str:
-    """Translate text to Chinese via free Google Translate.
+    """Translate text to Chinese via free Google Translate, with MyMemory fallback.
     Auto-detects source language (English/Thai).
     Retries if result contains no Chinese characters."""
     if not text or not text.strip():
         return text
     if _has_chinese(text):
         return text
-    translator = _get_translator()
-    if not translator:
-        return text
     chunk = text[:4500] if len(text) > 4500 else text
-    for attempt in range(retries + 1):
+
+    # Try Google Translate first
+    translator = _get_translator()
+    if translator:
+        for attempt in range(retries + 1):
+            try:
+                result = translator.translate(chunk)
+                time.sleep(0.4)
+                if result and _has_chinese(result):
+                    return result
+                if attempt < retries:
+                    time.sleep(1)
+            except Exception as e:
+                logger.warning(f"Google Translate attempt {attempt+1} failed: {e}")
+                if attempt < retries:
+                    time.sleep(2)
+
+    # Fallback: MyMemoryTranslator (500-char limit, rate-limited to ~5 req/s)
+    fallback_chunk = chunk[:450] if len(chunk) > 450 else chunk
+    for attempt in range(3):
         try:
-            result = translator.translate(chunk)
-            time.sleep(0.4)
+            fallback = _get_fallback_translator(fallback_chunk)
+            result = fallback.translate(fallback_chunk)
+            time.sleep(1.2)
             if result and _has_chinese(result):
                 return result
-            if attempt < retries:
-                time.sleep(1)
+            break
         except Exception as e:
-            logger.warning(f"Google Translate attempt {attempt+1} failed: {e}")
-            if attempt < retries:
-                time.sleep(2)
+            if "too many requests" in str(e).lower() or "Server Error" in str(e):
+                wait = 10 * (attempt + 1)
+                logger.warning(f"MyMemory rate limited, waiting {wait}s...")
+                time.sleep(wait)
+            else:
+                logger.warning(f"MyMemory fallback failed: {e}")
+                break
+
     return text
 
 
