@@ -1,67 +1,39 @@
 """
 Built-in English/Thai→Chinese translation for fintech news.
-Uses Google Translate (free, via deep-translator) with direct API and MyMemory fallbacks.
+Uses googletrans (primary) with deep-translator as fallback.
 """
 import logging
 import time
 
 logger = logging.getLogger(__name__)
 
-_translator = None
-_fallback_translator_th = None
-_fallback_translator_en = None
+_gt_translator = None
+_deep_translator = None
+_active_backend = None
 
 
-def _get_translator():
-    global _translator
-    if _translator is None:
+def _init_googletrans():
+    global _gt_translator
+    if _gt_translator is None:
+        try:
+            from googletrans import Translator
+            _gt_translator = Translator()
+            logger.info("googletrans initialized")
+        except Exception as e:
+            logger.warning(f"googletrans init failed: {e}")
+    return _gt_translator
+
+
+def _init_deep_translator():
+    global _deep_translator
+    if _deep_translator is None:
         try:
             from deep_translator import GoogleTranslator
-            _translator = GoogleTranslator(source="auto", target="zh-CN")
-            logger.info("Google Translator initialized (auto-detect source)")
+            _deep_translator = GoogleTranslator(source="auto", target="zh-CN")
+            logger.info("deep-translator initialized")
         except Exception as e:
-            logger.warning(f"Failed to init Google Translator: {e}")
-    return _translator
-
-
-def _get_fallback_translator(text: str):
-    """Get MyMemoryTranslator with correct source language based on text content."""
-    global _fallback_translator_th, _fallback_translator_en
-    from deep_translator import MyMemoryTranslator
-
-    if _has_thai(text):
-        if _fallback_translator_th is None:
-            _fallback_translator_th = MyMemoryTranslator(source="th-TH", target="zh-CN")
-            logger.info("MyMemory fallback initialized (Thai→Chinese)")
-        return _fallback_translator_th
-    else:
-        if _fallback_translator_en is None:
-            _fallback_translator_en = MyMemoryTranslator(source="en-GB", target="zh-CN")
-            logger.info("MyMemory fallback initialized (English→Chinese)")
-        return _fallback_translator_en
-
-
-def _translate_direct_api(text: str) -> str | None:
-    """Direct Google Translate API call via httpx (different endpoint from deep-translator)."""
-    try:
-        import httpx
-    except ImportError:
-        return None
-    source = "th" if _has_thai(text) else "auto"
-    params = {"client": "gtx", "sl": source, "tl": "zh-CN", "dt": "t", "q": text[:4500]}
-    try:
-        resp = httpx.get(
-            "https://translate.googleapis.com/translate_a/single",
-            params=params, timeout=15,
-        )
-        if resp.status_code == 200:
-            data = resp.json()
-            result = "".join(seg[0] for seg in data[0] if seg[0])
-            if result and _has_chinese(result):
-                return result
-    except Exception as e:
-        logger.debug(f"Direct API failed: {e}")
-    return None
+            logger.warning(f"deep-translator init failed: {e}")
+    return _deep_translator
 
 
 def _has_chinese(text: str) -> bool:
@@ -72,59 +44,59 @@ def _has_thai(text: str) -> bool:
     return any("\u0e00" <= c <= "\u0e7f" for c in (text or ""))
 
 
+def _translate_googletrans(text: str) -> str | None:
+    t = _init_googletrans()
+    if not t:
+        return None
+    try:
+        result = t.translate(text[:4500], dest="zh-cn")
+        if result and result.text and _has_chinese(result.text):
+            return result.text
+    except Exception as e:
+        logger.debug(f"googletrans failed: {e}")
+    return None
+
+
+def _translate_deep(text: str) -> str | None:
+    t = _init_deep_translator()
+    if not t:
+        return None
+    try:
+        result = t.translate(text[:4500])
+        if result and _has_chinese(result):
+            return result
+    except Exception as e:
+        logger.debug(f"deep-translator failed: {e}")
+    return None
+
+
 def google_translate(text: str, retries: int = 2) -> str:
-    """Translate text to Chinese. Fallback chain:
-    1. deep-translator GoogleTranslator
-    2. Direct translate.googleapis.com/translate_a/single
-    3. MyMemoryTranslator
-    """
+    """Translate to Chinese with multi-backend fallback.
+    Returns original text unchanged on complete failure."""
+    global _active_backend
     if not text or not text.strip():
         return text
     if _has_chinese(text):
         return text
-    chunk = text[:4500] if len(text) > 4500 else text
 
-    # Layer 1: deep-translator Google
-    translator = _get_translator()
-    if translator:
-        for attempt in range(retries + 1):
-            try:
-                result = translator.translate(chunk)
-                time.sleep(0.4)
-                if result and _has_chinese(result):
-                    return result
-                if attempt < retries:
-                    time.sleep(1)
-            except Exception as e:
-                logger.warning(f"Google Translate attempt {attempt+1} failed: {e}")
-                if attempt < retries:
-                    time.sleep(2)
-
-    # Layer 2: direct googleapis endpoint
-    result = _translate_direct_api(chunk)
-    if result:
-        time.sleep(0.5)
-        return result
-
-    # Layer 3: MyMemoryTranslator (500-char limit, rate-limited to ~5 req/s)
-    fallback_chunk = chunk[:450] if len(chunk) > 450 else chunk
-    for attempt in range(3):
-        try:
-            fallback = _get_fallback_translator(fallback_chunk)
-            result = fallback.translate(fallback_chunk)
-            time.sleep(1.2)
-            if result and _has_chinese(result):
+    for attempt in range(retries + 1):
+        if _active_backend != "deep":
+            result = _translate_googletrans(text)
+            if result:
+                _active_backend = "googletrans"
                 return result
-            break
-        except Exception as e:
-            if "too many requests" in str(e).lower() or "Server Error" in str(e):
-                wait = 10 * (attempt + 1)
-                logger.warning(f"MyMemory rate limited, waiting {wait}s...")
-                time.sleep(wait)
-            else:
-                logger.warning(f"MyMemory fallback failed: {e}")
-                break
 
+        result = _translate_deep(text)
+        if result:
+            _active_backend = "deep"
+            return result
+
+        if attempt < retries:
+            wait = 1.5 * (attempt + 1)
+            logger.info(f"Translation retry {attempt+1}, waiting {wait}s...")
+            time.sleep(wait)
+
+    logger.warning(f"All translators failed for: {text[:50]}")
     return text
 
 
