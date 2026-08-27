@@ -38,6 +38,13 @@ logger = logging.getLogger("main")
 
 def run_update(dry_run: bool = False):
     """Execute one full update cycle."""
+    try:
+        _run_update_inner(dry_run)
+    except Exception as e:
+        logger.error(f"Update failed with error: {e}", exc_info=True)
+
+
+def _run_update_inner(dry_run: bool = False):
     logger.info("=" * 60)
     logger.info(f"Starting daily update: {datetime.now().strftime('%Y-%m-%d %H:%M')}")
     logger.info("=" * 60)
@@ -86,20 +93,44 @@ def run_update(dry_run: bool = False):
     # Keep only 2026+ news
     all_news = [n for n in all_news if n.get("published", "9999") >= "2026-01-01"]
 
-    # 6. Apply translations to ALL items (including existing)
-    from translator import translate_news_item
-    logger.info(f"Translating {len(all_news)} items to Chinese...")
-    for i, n in enumerate(all_news):
+    # 6. Deduplicate corpus by URL (keep first occurrence = newest)
+    seen_urls = set()
+    deduped = []
+    for n in all_news:
+        url = n.get("url", "")
+        if url and url in seen_urls:
+            continue
+        if url:
+            seen_urls.add(url)
+        deduped.append(n)
+    if len(deduped) < len(all_news):
+        logger.info(f"Corpus dedup: removed {len(all_news) - len(deduped)} duplicates")
+        all_news = deduped
+
+    # 7. Apply translations only to items that need it
+    from translator import translate_news_item, _has_chinese, _title_body
+    needs_translation = []
+    for n in all_news:
+        title_zh = n.get("title_zh", "")
+        summary_zh = n.get("summary_zh", "")
+        body = _title_body(title_zh)
+        if not _has_chinese(body) or not _has_chinese(summary_zh):
+            needs_translation.append(n)
+    logger.info(f"Translating {len(needs_translation)}/{len(all_news)} items to Chinese...")
+    for i, n in enumerate(needs_translation):
         translate_news_item(n)
         if (i + 1) % 10 == 0:
-            logger.info(f"  translated {i + 1}/{len(all_news)}")
+            logger.info(f"  translated {i + 1}/{len(needs_translation)}")
+        if (i + 1) % 50 == 0:
+            import time as _time
+            _time.sleep(2)
     logger.info("Translation complete.")
 
-    # 7. Save
+    # 8. Save
     save_news(all_news)
     logger.info(f"Total news items in database: {len(all_news)}")
 
-    # 8. Generate HTML
+    # 9. Generate HTML
     if not dry_run:
         vol = get_next_vol_number()
         generate_all_pages(all_news, vol_number=vol)
@@ -107,7 +138,7 @@ def run_update(dry_run: bool = False):
     else:
         logger.info("Dry run mode: HTML generation skipped.")
 
-    # 9. Summary
+    # 10. Summary
     section_counts = {}
     for item in new_dicts:
         for sec in item.get("sections", []):
@@ -119,7 +150,7 @@ def run_update(dry_run: bool = False):
     major_count = sum(1 for n in new_dicts if n.get("is_major"))
     logger.info(f"Major news items: {major_count}")
 
-    # 10. WeChat Work notification — push yesterday's published news
+    # 11. WeChat Work notification — push yesterday's published news
     from datetime import timedelta as _td
     yesterday_str = (datetime.now() - _td(days=1)).strftime("%Y-%m-%d")
     push_items = [n for n in all_news if n.get("published") == yesterday_str]
