@@ -1,8 +1,4 @@
 {
-  "2026-08-02": [
-    "https://www.kaohoon.com/news/local/850745",
-    "https://www.kaohoon.com/news/local/850737"
-  ],
   "2026-08-03": [
     "https://mgronline.com/cyberbiz/detail/9690000075656",
     "https://www.prachachat.net/finance/news-2045726"
@@ -203,5 +199,13 @@
     "https://www.ryt9.com/s/iq/12841768",
     "https://today.line.me/th/v3/article/j7RRLnL",
     "https://www.infoquest.co.th/2026/642886"
+  ],
+  "2026-09-05": [
+    "https://fintechnews.sg/136708/thailand/thailand-bnpl-licence/",
+    "https://www.kaohoon.com/news/860570",
+    "https://www.ryt9.com/s/iq/12842011",
+    "https://www.kaohoon.com/news/local/860407",
+    "https://www.prachachat.net/finance/news-2062279",
+    "https://www.nationthailand.com/business/banking-finance/40070654"
   ]
 }
