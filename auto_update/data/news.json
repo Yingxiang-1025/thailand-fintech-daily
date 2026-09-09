@@ -1,5 +1,97 @@
 [
   {
+    "title": "กสิกรไทย คาดสินเชื่อเอสเอ็มอีโต 1-2% หนุนขยายวงเงิน SME Credit Boost - ประชาชาติธุรกิจ",
+    "url": "https://www.prachachat.net/finance/news-2063821",
+    "summary": "กสิกรไทย คาดสินเชื่อเอสเอ็มอีโต 1-2% หนุนขยายวงเงิน SME Credit Boost  ประชาชาติธุรกิจ",
+    "source": "GN Prachachat Finance",
+    "published": "2026-09-08",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "开泰银行预计中小企业贷款将增长 1-2%，以支持中小企业信贷提振 Prachachat Turakij 的扩张。",
+    "is_major": false,
+    "fetched_date": "2026-09-09",
+    "title_zh": "【信贷】 开泰银行预计中小企业贷款将增长 1-2%，支持扩大中小企业信贷增长 - Prachachat Turakij",
+    "source_zh": "GN Prachachat Finance"
+  },
+  {
+    "title": "SC ผนึก \"ยูโอบี\" รับสินเชื่อ SLL กว่า 2 พันล้าน หนุนพัฒนา 5 โครงการบ้านเดี่ยว - ข่าวหุ้นธุรกิจออนไลน์",
+    "url": "https://www.kaohoon.com/news/861372",
+    "summary": "SC ผนึก \"ยูโอบี\" รับสินเชื่อ SLL กว่า 2 พันล้าน หนุนพัฒนา 5 โครงการบ้านเดี่ยว  ข่าวหุ้นธุรกิจออนไลน์",
+    "source": "GN Kaohoon",
+    "published": "2026-09-08",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "SC与“大华银行”联手获得超过20亿的SLL贷款，支持5个独立屋项目的开发。网上商业新闻",
+    "is_major": false,
+    "fetched_date": "2026-09-09",
+    "title_zh": "【现金贷】 SC联手“大华银行”获得超20亿SLL贷款支持5个独立屋项目开发 - 财经新闻",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "SENA-ฮันคิวฯ คว้าสินเชื่อ SMBC 1.6 พันล้าน ลุย 3 คอนโด Low Carbon แบรนด์ COZI - ข่าวหุ้นธุรกิจออนไลน์",
+    "url": "https://www.kaohoon.com/news/861349",
+    "summary": "SENA-ฮันคิวฯ คว้าสินเชื่อ SMBC 1.6 พันล้าน ลุย 3 คอนโด Low Carbon แบรนด์ COZI  ข่าวหุ้นธุรกิจออนไลน์",
+    "source": "GN Kaohoon",
+    "published": "2026-09-08",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "SENA-阪急获得SMBC 16亿贷款，以COZI品牌推出3套低碳公寓。在线商业新闻。",
+    "is_major": false,
+    "fetched_date": "2026-09-09",
+    "title_zh": "【现金贷】 SENA-阪急获得SMBC 16亿贷款推出COZI品牌3套低碳公寓 - 商业新闻",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "\"แอสเซนด์ฯ\" ลุยตั้ง Virtual Bank ปีนี้ เดินหน้าแยกธุรกิจตามเกณฑ์ ธปท. - ข่าวหุ้นธุรกิจออนไลน์",
+    "url": "https://www.kaohoon.com/news/861220",
+    "summary": "\"แอสเซนด์ฯ\" ลุยตั้ง Virtual Bank ปีนี้ เดินหน้าแยกธุรกิจตามเกณฑ์ ธปท.  ข่าวหุ้นธุรกิจออนไลน์",
+    "source": "GN Kaohoon",
+    "published": "2026-09-08",
+    "sections": [
+      "regulation",
+      "virtual_bank"
+    ],
+    "summary_zh": "“Ascend”计划今年设立虚拟银行，按标准推进业务分离。BoT 在线商业股票新闻",
+    "is_major": true,
+    "fetched_date": "2026-09-09",
+    "title_zh": "【金融科技】 “Ascend”计划今年设立虚拟银行，按BoT标准推进业务分离_财经头条",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "เสนอ ธปท. ออกกติกากำกับBNPL คุมตั้งแต่ก่อนก่อหนี้ ห้ามตั้ง “Pay Later” เป็นค่าเริ่มต้น - สภาองค์กรของผู้บริโภค",
+    "url": "https://www.tcc.or.th/bnpl-before-debt/",
+    "summary": "เสนอ ธปท. ออกกติกากำกับBNPL คุมตั้งแต่ก่อนก่อหนี้ ห้ามตั้ง “Pay Later” เป็นค่าเริ่มต้น  สภาองค์กรของผู้บริโภค",
+    "source": "GN BOT Regulation",
+    "published": "2026-09-08",
+    "sections": [
+      "regulation",
+      "bnpl"
+    ],
+    "summary_zh": "建议央行颁布法规来监管 BNPL。在负债之前控制住自己。不要将“稍后付款”设置为默认值。消费者组织委员会。",
+    "is_major": true,
+    "fetched_date": "2026-09-09",
+    "title_zh": "【BNPL】 建议央行颁布法规来监管 BNPL。在负债之前掌握控制权。不要将“稍后付款”设置为默认设置 - 消费者组织委员会",
+    "source_zh": "GN BOT Regulation"
+  },
+  {
+    "title": "Shopee Brings One-Hour Groceries, Telepharmacy to Thailand",
+    "url": "https://fintechnews.sg/136856/thailand/shopee-thailand-instant-delivery-telepharmacy/",
+    "summary": "Shopee has added one-hour grocery orders and remote pharmacy consultations to its growing range of services in Thailand. The company is expanding beyond conventional e-commerce as competition grows in the country’s on-demand market, the Bangkok Post reported. Shopee Telepharmacy connects users with licensed pharmacists through video, voice or in-app chat. They can seek advice on [...]\nThe post Shopee Brings One-Hour Groceries, Telepharmacy to Thailand appeared first on Fintech Singapore.",
+    "source": "Fintech News SG",
+    "published": "2026-09-08",
+    "sections": [
+      "regulation"
+    ],
+    "summary_zh": "Shopee 在泰国不断扩大的服务范围中增加了一小时杂货订单和远程药房咨询。据《曼谷邮报》报道，随着该国按需市场竞争的加剧，该公司正在将业务扩展到传统电子商务之外。Shopee Telepharmacy 通过视频、语音或应用内聊天将用户与持照药剂师联系起来。他们可以寻求有关[...]的建议\nShopee 将一小时杂货和远程药房带到泰国的帖子首先出现在新加坡金融科技上。",
+    "is_major": true,
+    "fetched_date": "2026-09-09",
+    "title_zh": "【金融科技】 Shopee 将一小时杂货和远程药房带到泰国",
+    "source_zh": "Fintech News SG"
+  },
+  {
     "title": "บสย. ขยับค้ำสินเชื่อดิจิทัล “Virtual Bank-น็อนแบงก์” อุ้มเอสเอ็มอี - ประชาชาติธุรกิจ",
     "url": "https://www.prachachat.net/finance/news-2062247",
     "summary": "บสย. ขยับค้ำสินเชื่อดิจิทัล “Virtual Bank-น็อนแบงก์” อุ้มเอสเอ็มอี  ประชาชาติธุรกิจ",
