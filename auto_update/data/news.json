@@ -1,5 +1,67 @@
 [
   {
+    "title": "สินเชื่อหลักทรัพย์ - kaohoon.com",
+    "url": "https://www.kaohoon.com/tag/%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%97%E0%B8%A3%E0%B8%B1%E0%B8%9E%E0%B8%A2%E0%B9%8C",
+    "summary": "สินเชื่อหลักทรัพย์  kaohoon.com",
+    "source": "GN Kaohoon",
+    "published": "2026-09-12",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "证券贷款kaohoon.com",
+    "is_major": true,
+    "fetched_date": "2026-09-13",
+    "title_zh": "【现金贷】 证券贷款 - kaohoon.com",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "ธุรกิจ‘BNPL’บนเส้นทางของกติกาใหม่ เมื่อธปท.คุมเกมสินเชื่อบนปลายนิ้วก่อนหนี้ดิจิทัลล้ำเส้นความเสี่ยง - thaipost.net",
+    "url": "https://www.thaipost.net/economy-news/1067999/",
+    "summary": "ธุรกิจ‘BNPL’บนเส้นทางของกติกาใหม่ เมื่อธปท.คุมเกมสินเชื่อบนปลายนิ้วก่อนหนี้ดิจิทัลล้ำเส้นความเสี่ยง  thaipost.net",
+    "source": "GN BOT Regulation",
+    "published": "2026-09-12",
+    "sections": [
+      "regulation",
+      "cash_loan",
+      "bnpl"
+    ],
+    "summary_zh": "“BNPL”业务走上新规则当央行在数字债务跨越风险线之前控制借贷游戏时，thaipost.net",
+    "is_major": true,
+    "fetched_date": "2026-09-13",
+    "title_zh": "【BNPL】 “BNPL”业务走上新规则之路 当央行在数字债务跨越风险线之前控制借贷游戏时 - thaipost.net",
+    "source_zh": "GN BOT Regulation"
+  },
+  {
+    "title": "มท.ชงแล้วใช้งบ 7.5 หมื่นล้าน “ติดโซลาร์รูฟท็อป” 1.5 ล้านครัวเรือน ยันไร้ฮั้วล็อกสเป็ก",
+    "url": "https://www.prachachat.net/politics/news-2065831",
+    "summary": "มหาดไทย ชงโครงการขอใช้งบเงินกู้ฯ “ติดตั้งโซลาร์รูฟท็อป” 1.5 ล้านครัวเรือน วงเงิน 7.5 หมื่นล้าน เข้าบอร์ดกลั่นกรองแล้ว มั่นใจไม่ฮั้วล็อกสเป็ก เผยมี 2.3 พันบริษัทพร้อมร่วมติดตั้ง ยันไม่เลือกกลุ่มใดกลุ่มหนึ่ง นายพลพีร์ สุวรรณฉวี รัฐมนตรีช่วยว่าการกระทรว … \nอ่านข่าวต้นฉบับ: มท.ชงแล้วใช้งบ 7.5 หมื่นล้าน “ติดโซลาร์รูฟท็อป” 1.5 ล้านครัวเรือน ยันไร้ฮั้วล็อกสเป็ก",
+    "source": "Prachachat Direct",
+    "published": "2026-09-12",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "内政部提出使用贷款预算的项目请求。为150万户家庭安装太阳能屋顶、预算750亿美元的项目已提交审查委员会。确信不会有锁定规范。据透露，目前已有2300家企业准备参与安装。部副部长 Pee Suwanchawee 将军确认他不会选择任何团体……\n阅读原文：内政部批准并使用750亿预算为150万户家庭“安装屋顶太阳能”。确认无规格锁罩。",
+    "is_major": true,
+    "fetched_date": "2026-09-13",
+    "title_zh": "【金融科技】 内政部批准并使用750亿美元的预算为150万户家庭“安装屋顶太阳能”。确认无规格锁罩。",
+    "source_zh": "Prachachat Direct"
+  },
+  {
+    "title": "Thailand to Introduce Crypto Travel Rule From February 2027 - Fintech Singapore",
+    "url": "https://fintechnews.sg/136660/thailand/thailand-crypto-travel-rule/",
+    "summary": "Thailand to Introduce Crypto Travel Rule From February 2027  Fintech Singapore",
+    "source": "Fintech Singapore",
+    "published": "2026-09-03",
+    "sections": [
+      "digital_lending"
+    ],
+    "summary_zh": "泰国将从 2027 年 2 月起引入加密货币旅行规则",
+    "is_major": false,
+    "fetched_date": "2026-09-13",
+    "title_zh": "【金融科技】 泰国将从 2027 年 2 月起引入加密货币旅行规则 - Fintech Singapore",
+    "source_zh": "Fintech Singapore"
+  },
+  {
     "title": "เปิดรายละเอียด “สินเชื่อ AI นกกระซิบ” ใช้ยอดขายจริงช่วย SMEs เข้าถึงแหล่งทุน - ประชาชาติธุรกิจ",
     "url": "https://www.prachachat.net/finance/news-2065291",
     "summary": "เปิดรายละเอียด “สินเชื่อ AI นกกระซิบ” ใช้ยอดขายจริงช่วย SMEs เข้าถึงแหล่งทุน  ประชาชาติธุรกิจ",
