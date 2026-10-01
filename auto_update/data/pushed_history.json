@@ -1,8 +1,4 @@
 {
-  "2026-08-30": [
-    "https://www.prachachat.net/finance/news-2059164",
-    "https://www.prachachat.net/economic/news-2059220"
-  ],
   "2026-08-31": [
     "https://www.prachachat.net/politics/news-2059598",
     "https://www.prachachat.net/economic/news-2058908"
@@ -201,5 +197,9 @@
     "https://www.kaohoon.com/news/867411",
     "https://fintechnews.sg/138131/thailand/deemoney-seon-real-time-fraud-screening/",
     "https://fintechnews.sg/137524/payments/apac-card-issuing-modernisation/"
+  ],
+  "2026-10-01": [
+    "https://www.prachachat.net/finance/news-2074337",
+    "https://www.kaohoon.com/news/867825"
   ]
 }
