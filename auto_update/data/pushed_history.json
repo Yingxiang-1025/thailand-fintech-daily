@@ -1,9 +1,4 @@
 {
-  "2026-09-03": [
-    "https://www.kaohoon.com/news/859842",
-    "https://www.kaohoon.com/news/859838",
-    "https://www.kaohoon.com/column/859998"
-  ],
   "2026-09-04": [
     "https://techsauce.co/news/thailand-new-horizons-bot-governor-speech",
     "https://www.prachachat.net/finance/news-2061816",
@@ -196,5 +191,9 @@
     "https://www.prachachat.net/automotive/news-2076009",
     "https://www.prachachat.net/news/news-2075957",
     "https://thestandard.co/industry-flood-smes-aid/"
+  ],
+  "2026-10-06": [
+    "https://www.kaohoon.com/news/869238",
+    "https://www.prachachat.net/real-estate/news-2076444"
   ]
 }
