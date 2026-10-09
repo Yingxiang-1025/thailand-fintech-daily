@@ -1,5 +1,97 @@
 [
   {
+    "title": "ธปท.เร่งแก้ ‘เอสเอ็มอี’ ติดกับดัก เร่งออก 3 มาตรการ คาดปี 2570 สินเชื่อกลับมาบวก - ประชาชาติธุรกิจ",
+    "url": "https://www.prachachat.net/finance/news-2078461",
+    "summary": "ธปท.เร่งแก้ ‘เอสเอ็มอี’ ติดกับดัก เร่งออก 3 มาตรการ คาดปี 2570 สินเชื่อกลับมาบวก  ประชาชาติธุรกิจ",
+    "source": "GN Prachachat Finance",
+    "published": "2026-10-08",
+    "sections": [
+      "regulation",
+      "cash_loan"
+    ],
+    "summary_zh": "Prachachat Turakij 表示，泰国央行急于解决陷入困境的“中小企业”，推出 3 项措施，预计信贷将在 2027 年恢复正值。",
+    "is_major": true,
+    "fetched_date": "2026-10-09",
+    "title_zh": "【现金贷】 BoT 急于解决陷入困境的“中小企业”，推出 3 项措施，预计贷款将在 2027 年恢复正值 - Prachachat Turakij",
+    "source_zh": "GN Prachachat Finance"
+  },
+  {
+    "title": "ธปท. อัด 4 มาตรการทางการเงิน อุ้ม SME-ฐานราก เข้าถึงทุนแสนล้าน - Thansettakij",
+    "url": "https://www.thansettakij.com/finance/financial-banking/670954",
+    "summary": "ธปท. อัด 4 มาตรการทางการเงิน อุ้ม SME-ฐานราก เข้าถึงทุนแสนล้าน  Thansettakij",
+    "source": "GN Thansettakij",
+    "published": "2026-10-08",
+    "sections": [
+      "digital_lending"
+    ],
+    "summary_zh": "BoT推出4项金融措施支持中小企业和基层获得1000亿泰铢资本Thansettakij",
+    "is_major": true,
+    "fetched_date": "2026-10-09",
+    "title_zh": "【信贷】 BoT发布4项金融措施支持中小企业和基层获得1000亿泰铢资金 - Thansettakij",
+    "source_zh": "GN Thansettakij"
+  },
+  {
+    "title": "AEONTS สินเชื่ออุดตัน.! - ข่าวหุ้นธุรกิจออนไลน์",
+    "url": "https://www.kaohoon.com/column/870598",
+    "summary": "AEONTS สินเชื่ออุดตัน.!  ข่าวหุ้นธุรกิจออนไลน์",
+    "source": "GN Kaohoon",
+    "published": "2026-10-08",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "AEONTS信用被堵塞！  网上商业股票新闻",
+    "is_major": false,
+    "fetched_date": "2026-10-09",
+    "title_zh": "【现金贷】 AEONTS 信贷堵塞！- 在线商业新闻",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "สินเชื่อลงทุน - ข่าวหุ้นธุรกิจออนไลน์",
+    "url": "https://www.kaohoon.com/tag/%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%A5%E0%B8%87%E0%B8%97%E0%B8%B8%E0%B8%99",
+    "summary": "สินเชื่อลงทุน  ข่าวหุ้นธุรกิจออนไลน์",
+    "source": "GN Kaohoon",
+    "published": "2026-10-08",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "投资贷款、网上商业新闻",
+    "is_major": false,
+    "fetched_date": "2026-10-09",
+    "title_zh": "【现金贷】 投资贷款-在线商业新闻",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "ไทยเตรียมออก Data Exchange Bureau ใช้ข้อมูลทางเลือก ช่วยพิจารณาสินเชื่อ ภายในกลางปีหน้า ธปท.จ่อเปิดทางเช็กเครดิตบูโรฟรี 2 ครั้งต่อปี - thestandard.co",
+    "url": "https://thestandard.co/data-exchange-bureau-credit-sme/",
+    "summary": "ไทยเตรียมออก Data Exchange Bureau ใช้ข้อมูลทางเลือก ช่วยพิจารณาสินเชื่อ ภายในกลางปีหน้า ธปท.จ่อเปิดทางเช็กเครดิตบูโรฟรี 2 ครั้งต่อปี  thestandard.co",
+    "source": "GN TheStandard Wealth",
+    "published": "2026-10-08",
+    "sections": [
+      "regulation",
+      "cash_loan"
+    ],
+    "summary_zh": "泰国准备推出数据交换局以使用替代数据 帮助考虑贷款 到明年年中 BoT 计划开放一种每年免费检查信用局 2 次的方式 thestandard.co",
+    "is_major": true,
+    "fetched_date": "2026-10-09",
+    "title_zh": "【现金贷】 泰国准备推出数据交换局以使用替代数据 帮助考虑贷款 到明年年中 BoT 计划开放一种每年两次免费检查信用局的方式 - thestandard.co",
+    "source_zh": "GN TheStandard Wealth"
+  },
+  {
+    "title": "KB J เตรียมออกหุ้นกู้ครั้งแรก 500 ล้าน ดอกเบี้ย 2.85–2.95% ชูเครดิต A-",
+    "url": "https://www.prachachat.net/finance/news-2078574",
+    "summary": "“เคบี เจ แคปปิตอล” หรือ KB J ผู้ให้บริการสินเชื่อรายย่อย เตรียมเสนอขายหุ้นกู้ครั้งแรก วงเงินไม่เกิน 500 ล้านบาท อายุ 2 ปี คาดอัตราดอกเบี้ย 2.85–2.95% ต่อปี เปิดจอง 26–28 ต.ค.นี้ สำหรับผู้ลงทุนสถาบันและผู้ลงทุนรายใหญ่ หลังทริสเรทติ้งจัดอันดับเครดิตองค … \nอ่านข่าวต้นฉบับ: KB J เตรียมออกหุ้นกู้ครั้งแรก 500 ล้าน ดอกเบี้ย 2.85–2.95% ชูเครดิต A-",
+    "source": "Prachachat Direct",
+    "published": "2026-10-08",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "“KB J Capital”或 KB J，零售贷款服务提供商 准备首次发行债券 信用额度不超过 5 亿泰铢，期限 2 年，预计年利率 2.85-2.95%。10 月 26 日至 28 日向机构投资者和大型投资者开放预订。TRIS Ratings对该组织的信用评级进行评级后...\n阅读原文：KB J准备发行首期债券，价值5亿，利率2.85-2.95%，持有信用A-",
+    "is_major": false,
+    "fetched_date": "2026-10-09",
+    "title_zh": "【金融科技】 KB J准备发行首期债​​券5亿，利率2.85-2.95%，持有信用A-",
+    "source_zh": "Prachachat Direct"
+  },
+  {
     "title": "ออมสิน ออกมาตรการพักหนี้-สินเชื่อช่วยเหลือลูกหนี้ ซ่อมบ้าน ฟื้นกิจการจากน้ำท่วม - ประชาชาติธุรกิจ",
     "url": "https://www.prachachat.net/finance/news-2077499",
     "summary": "ออมสิน ออกมาตรการพักหนี้-สินเชื่อช่วยเหลือลูกหนี้ ซ่อมบ้าน ฟื้นกิจการจากน้ำท่วม  ประชาชาติธุรกิจ",
