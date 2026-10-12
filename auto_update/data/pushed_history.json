@@ -1,12 +1,4 @@
 {
-  "2026-09-09": [
-    "https://www.prachachat.net/finance/news-2063821",
-    "https://www.kaohoon.com/news/861372",
-    "https://www.kaohoon.com/news/861349",
-    "https://www.kaohoon.com/news/861220",
-    "https://www.tcc.or.th/bnpl-before-debt/",
-    "https://fintechnews.sg/136856/thailand/shopee-thailand-instant-delivery-telepharmacy/"
-  ],
   "2026-09-10": [
     "https://www.prachachat.net/finance/news-2064274",
     "https://siamblockchain.com/2026/09/09/visa-connects-visanet-with-on-chain-lending-platforms-leveraging-blockchain-based-loans-to-back-stablecoin-cards/",
@@ -191,5 +183,8 @@
     "https://www.kaohoon.com/news/870749",
     "https://www.kaohoon.com/news/general/870922",
     "https://cfotech.asia/story/paymentology-eyes-thailand-s-next-digital-payments-phase"
+  ],
+  "2026-10-12": [
+    "https://www.prachachat.net/economic/news-2078364"
   ]
 }
