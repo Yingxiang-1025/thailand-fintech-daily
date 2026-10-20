@@ -1,5 +1,233 @@
 [
   {
+    "title": "ธปท. เตรียมเปิด SME Credit Portal จับคู่ SME กับแบงก์ คาดเปิด ธ.ค. 2569",
+    "url": "https://techsauce.co/news/bot-sme-credit-portal",
+    "summary": "ธปท. เตรียมเปิด SME Credit Portal เว็บกลางจับคู่ SME ที่ต้องการสินเชื่อกับสถาบันการเงิน หลังสินเชื่อ SME ติดลบต่อเนื่อง 16 ไตรมาส คาดเปิดภายในเดือนธันวาคม 2569",
+    "source": "Techsauce",
+    "published": "2026-10-19",
+    "sections": [
+      "regulation",
+      "cash_loan"
+    ],
+    "summary_zh": "在中小企业贷款连续16个季度为负数后，央行正准备开设中小企业信贷门户，这是一个为需要贷款的中小企业与金融机构进行匹配的中央网站。预计将于 2026 年 12 月开业。",
+    "is_major": true,
+    "fetched_date": "2026-10-20",
+    "title_zh": "【信贷】 BoT 准备开放中小企业信贷门户，为中小企业与银行配对，预计将于 2026 年 12 月开放。",
+    "source_zh": "Techsauce科技"
+  },
+  {
+    "title": "NCB แลกเปลี่ยนมุมมองดึง ‘Alternative Data’ มาใช้ คลังชี้ช่วยเพิ่มความน่าเชื่อถือให้ผู้กู้เงิน - ประชาชาติธุรกิจ",
+    "url": "https://www.prachachat.net/finance/news-2081943",
+    "summary": "NCB แลกเปลี่ยนมุมมองดึง ‘Alternative Data’ มาใช้ คลังชี้ช่วยเพิ่มความน่าเชื่อถือให้ผู้กู้เงิน  ประชาชาติธุรกิจ",
+    "source": "GN Prachachat Finance",
+    "published": "2026-10-16",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "NCB 就使用“另类数据”交换意见。财政部指出，这有助于提高借款人的可信度。巴差差·图拉吉 (Prachachat Turakij)",
+    "is_major": false,
+    "fetched_date": "2026-10-20",
+    "title_zh": "【现金贷】 NCB 就使用“另类数据”交换意见。财政部指出，这有助于提高借款人的可信度 - Prachachat Turakij。",
+    "source_zh": "GN Prachachat Finance"
+  },
+  {
+    "title": "CodeCoin เปิดตัวบัตร Visa ใช้ Stablecoin ชำระเงิน เดินหน้าขยายพันธมิตรฟินเทค - MGR Online",
+    "url": "https://mgronline.com/business/detail/9690000101069",
+    "summary": "CodeCoin เปิดตัวบัตร Visa ใช้ Stablecoin ชำระเงิน เดินหน้าขยายพันธมิตรฟินเทค  MGR Online",
+    "source": "GN Manager Finance",
+    "published": "2026-10-19",
+    "sections": [
+      "credit_card"
+    ],
+    "summary_zh": "CodeCoin 推出使用稳定币进行支付的 Visa 卡，继续扩大金融科技合作伙伴关系 MGR Online",
+    "is_major": false,
+    "fetched_date": "2026-10-20",
+    "title_zh": "【信用卡】 CodeCoin 推出 Visa 卡，使用稳定币进行支付，继续扩大金融科技合作伙伴关系 - MGR Online",
+    "source_zh": "GN Manager Finance"
+  },
+  {
+    "title": "ผู้ว่าฯ ธปท. เผยประชุม IMF-World Bank ยกระดับเชื่อมั่นศักยภาพไทย ต่อยอดสู่การลงทุนจริง - ผู้จัดการออนไลน์",
+    "url": "https://mgronline.com/stockmarket/detail/9690000100568",
+    "summary": "ผู้ว่าฯ ธปท. เผยประชุม IMF-World Bank ยกระดับเชื่อมั่นศักยภาพไทย ต่อยอดสู่การลงทุนจริง  ผู้จัดการออนไลน์",
+    "source": "GN Manager Finance",
+    "published": "2026-10-17",
+    "sections": [
+      "regulation"
+    ],
+    "summary_zh": "BoT行长透露国际货币基金组织-世界银行会议将提高对泰国潜力的信心继续进行实际投资，在线经理",
+    "is_major": true,
+    "fetched_date": "2026-10-20",
+    "title_zh": "【金融科技】 泰国央行行长透露国际货币基金组织-世界银行会议将提高对泰国潜力的信心延伸至实际投资 - 在线经理",
+    "source_zh": "GN Manager Finance"
+  },
+  {
+    "title": "“ธุรกิจรายเล็ก” กู้ยาก World Bank ชี้ขาดเงินทุนกว่า 4 ล้านล้านดอลลาร์ ดันใช้ข้อมูล–AI เปิดทางสินเชื่อ - TNN Thailand",
+    "url": "https://www.tnnthailand.com/wealth/economy/250107",
+    "summary": "“ธุรกิจรายเล็ก” กู้ยาก World Bank ชี้ขาดเงินทุนกว่า 4 ล้านล้านดอลลาร์ ดันใช้ข้อมูล–AI เปิดทางสินเชื่อ  TNN Thailand",
+    "source": "GN Thai Fintech TH",
+    "published": "2026-10-17",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "“小企业”很难获得贷款。世界银行决定提供超过4万亿美元的资金。推动数据运用——人工智能为贷款开辟道路 TNN 泰国",
+    "is_major": false,
+    "fetched_date": "2026-10-20",
+    "title_zh": "【现金贷】 “小企业”很难获得贷款。世界银行决定提供超过4万亿美元的资金。推动数据运用——AI开启信贷之路 - TNN泰国",
+    "source_zh": "GN Thai Fintech TH"
+  },
+  {
+    "title": "น้ำท่วมเสี่ยงกดสินเชื่อแบงก์ กูรูชี้กำไร Q3 ลด 8.9% ชู KKP-KTB ปันผลสูง 5.7% - thansettakij",
+    "url": "https://www.thansettakij.com/finance/stockmarket/671749",
+    "summary": "น้ำท่วมเสี่ยงกดสินเชื่อแบงก์ กูรูชี้กำไร Q3 ลด 8.9% ชู KKP-KTB ปันผลสูง 5.7%  thansettakij",
+    "source": "GN Thansettakij",
+    "published": "2026-10-19",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "洪水有可能抑制银行贷款。 Guru指出第三季度利润下降8.9%，KKP-KTB持有高股息5.7%。thansettakij",
+    "is_major": false,
+    "fetched_date": "2026-10-20",
+    "title_zh": "【现金贷】 洪水风险会抑制银行贷款。 Guru指出第三季度利润下降8.9%，KKP-KTB维持5.7%的高股息 - Thansettakij",
+    "source_zh": "GN Thansettakij"
+  },
+  {
+    "title": "บสย.กางแผนปี 70 ควัก 3 หมื่นล้านค้ำสินเชื่อ ลุยช่วยรายย่อย 1 แสนราย - thansettakij",
+    "url": "https://www.thansettakij.com/economy/671784",
+    "summary": "บสย.กางแผนปี 70 ควัก 3 หมื่นล้านค้ำสินเชื่อ ลุยช่วยรายย่อย 1 แสนราย  thansettakij",
+    "source": "GN Thansettakij",
+    "published": "2026-10-19",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "TCG计划2017年贷款担保支出300亿。将帮助 100,000 家小型企业 Thansettakij",
+    "is_major": false,
+    "fetched_date": "2026-10-20",
+    "title_zh": "【现金贷】 TCG计划2017年贷款担保支出300亿。将帮助 100,000 家小型企业 -thansettakij",
+    "source_zh": "GN Thansettakij"
+  },
+  {
+    "title": "TTB อัดสินเชื่อสีเขียว 1.88 พันล้าน หนุนเอเชียโฮเต็ล รับท่องเที่ยวโตยั่งยืน - ข่าวหุ้นธุรกิจออนไลน์",
+    "url": "https://www.kaohoon.com/news/872904",
+    "summary": "TTB อัดสินเชื่อสีเขียว 1.88 พันล้าน หนุนเอเชียโฮเต็ล รับท่องเที่ยวโตยั่งยืน  ข่าวหุ้นธุรกิจออนไลน์",
+    "source": "GN Kaohoon",
+    "published": "2026-10-19",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "TTB 提供 18.8 亿绿色贷款，支持 Asia Hotel Get 旅游业可持续发展。在线商业新闻。",
+    "is_major": false,
+    "fetched_date": "2026-10-20",
+    "title_zh": "【现金贷】 TTB发放18.8亿绿色贷款支持亚洲酒店接受可持续旅游业增长 - 商业新闻",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "COM7-ADVICE-IT รับอานิสงส์สินเชื่อมือถือบูม โบรกชูกำไรครึ่งหลังโต - ข่าวหุ้นธุรกิจออนไลน์",
+    "url": "https://www.kaohoon.com/news/873043",
+    "summary": "COM7-ADVICE-IT รับอานิสงส์สินเชื่อมือถือบูม โบรกชูกำไรครึ่งหลังโต  ข่าวหุ้นธุรกิจออนไลน์",
+    "source": "GN Kaohoon",
+    "published": "2026-10-20",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "COM7-ADVICE-IT 受益于手机贷款的繁荣。经纪人称赞下半年利润增长，在线商业新闻",
+    "is_major": false,
+    "fetched_date": "2026-10-20",
+    "title_zh": "【现金贷】 COM7-ADVICE-IT 受益于手机贷款的繁荣。券商称赞下半年利润增长 - 在线商业新闻",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "MTC บวก 3% โบรกคาดกำไร Q3 โต 14% แตะ 1.96 พันล้าน รับสินเชื่อโต แนะซื้อเป้า 44 บ. - ข่าวหุ้นธุรกิจออนไลน์",
+    "url": "https://www.kaohoon.com/breakingnews/872838",
+    "summary": "MTC บวก 3% โบรกคาดกำไร Q3 โต 14% แตะ 1.96 พันล้าน รับสินเชื่อโต แนะซื้อเป้า 44 บ.  ข่าวหุ้นธุรกิจออนไลน์",
+    "source": "GN Kaohoon",
+    "published": "2026-10-19",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "MTC 加 3%，券商预计 Q3 利润增长 14% 至 19.6 亿，收到贷款增长，建议买入，目标为 44 泰铢。  在线商业新闻新闻。",
+    "is_major": false,
+    "fetched_date": "2026-10-20",
+    "title_zh": "【现金贷】 MTC +3%，券商预计Q3利润增长14%，达到19.6亿，收到的贷款不断增加，建议买入，目标为44泰铢 - 商业新闻",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "เปิดรับฟังความเห็นร่างเกณฑ์คุมสินเชื่อ \"ซื้อก่อน จ่ายทีหลัง\" ถึง 15 พ.ย. - Thai PBS",
+    "url": "https://www.thaipbs.or.th/news/content/571262",
+    "summary": "เปิดรับฟังความเห็นร่างเกณฑ์คุมสินเชื่อ \"ซื้อก่อน จ่ายทีหลัง\" ถึง 15 พ.ย.  Thai PBS",
+    "source": "GN BOT Regulation",
+    "published": "2026-10-19",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "泰国公共广播公司 (Thai PBS) 于 11 月 15 日之前开放听取有关“先买后付”信用控制标准草案的意见",
+    "is_major": false,
+    "fetched_date": "2026-10-20",
+    "title_zh": "【现金贷】 开放听取有关“先买后付”信用控制标准草案的意见，截止日期为 11 月 15 日 - 泰国 PBS",
+    "source_zh": "GN BOT Regulation"
+  },
+  {
+    "title": "ธนาคารโลกให้ไทยกู้ 200 ล้านดอลล่าร์ ลุย “เมืองคาร์บอนต่ำ” ลดพึ่งพานำเข้าเชื้อเพลิง",
+    "url": "https://www.prachachat.net/world/news-2082931",
+    "summary": "ประเทศไทยและกลุ่มธนาคารโลกชูโมเดลเมืองคาร์บอนต่ำ ลดต้นทุนพลังงาน ดึงดูดการลงทุน และสร้างงาน โดยธนาคารโลกให้ไทยเงินกู้ 200 ล้านดอลล่าร์ ประเทศไทยและกลุ่มธนาคารโลกนำเสนอแนวทางใหม่ในการลดต้นทุนพลังงาน ลดการพึ่งพาเชื้อเพลิงนำเข้า และดึงดูดการลงทุนจากภาคเ … \nอ่านข่าวต้นฉบับ: ธนาคารโลกให้ไทยกู้ 200 ล้านดอลล่าร์ ลุย “เมืองคาร์บอนต่ำ” ลดพึ่งพานำเข้าเชื้อเพลิง",
+    "source": "Prachachat Direct",
+    "published": "2026-10-19",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "泰国和世界银行集团推广低碳城市模式。降低能源成本 吸引投资并创造就业机会，世界银行向泰国提供了 2 亿美元贷款。泰国和世界银行集团提供了一种降低能源成本的新方法。减少对进口燃料的依赖并吸引该行业的投资……\n阅读原文：世界银行向泰国提供2亿美元贷款，用于发展“低碳城市”，以减少对进口燃料的依赖。",
+    "is_major": false,
+    "fetched_date": "2026-10-20",
+    "title_zh": "【数字银行】 世界银行向泰国提供2亿美元贷款，用于建设“低碳城市”，以减少对进口燃料的依赖。",
+    "source_zh": "Prachachat Direct"
+  },
+  {
+    "title": "SAM ช่วยลูกค้าน้ำท่วม 22 จังหวัด พักหนี้ 3 เดือน ผ่อนตามกำลังอีก 6 เดือน",
+    "url": "https://www.prachachat.net/finance/news-2082932",
+    "summary": "SAM ออกมาตรการช่วยลูกค้าประสบอุทกภัยใน 22 จังหวัด 119 อำเภอ พักชำระเงินต้น-ดอกเบี้ยเต็มจำนวนสูงสุด 3 เดือน ก่อนผ่อนปรนชำระตามกำลังอีก 6 เดือน เปิดลงทะเบียนถึง 14 ธ.ค. 2569 พร้อมช่วยลูกหนี้บัตรเครดิต-สินเชื่อส่วนบุคคลผ่านคลินิกแก้หนี้ ดอกเบี้ย 3-5% ผ่ … \nอ่านข่าวต้นฉบับ: SAM ช่วยลูกค้าน้ำท่วม 22 จังหวัด พักหนี้ 3 เดือน ผ่อนตามกำลังอีก 6 เดือน",
+    "source": "Prachachat Direct",
+    "published": "2026-10-19",
+    "sections": [
+      "credit_card",
+      "cash_loan"
+    ],
+    "summary_zh": "SAM已发布措施帮助22个省和119个地区受洪水影响的客户，暂停全额支付本金和利息最多3个月，然后根据能力再减轻6个月的还款。注册开放至 2026 年 12 月 14 日，同时通过债务诊所帮助信用卡和个人贷款债务人，利息 3-5%，已付……\n阅读原文： SAM帮助22个省份受灾客户，暂缓债务3个月，量力而行再付6个月。",
+    "is_major": false,
+    "fetched_date": "2026-10-20",
+    "title_zh": "【金融科技】 SAM帮助22个省份的受灾客户，暂停债务3个月，再根据自己的能力支付6个月。",
+    "source_zh": "Prachachat Direct"
+  },
+  {
+    "title": "Krungsri JCB Ultimate Credit Card to Debut in Thailand in November",
+    "url": "https://fintechnews.sg/139126/thailand/krungsri-jcb-ultimate-credit-card-thailand/",
+    "summary": "Krungsriayudhya Card and JCB International will launch the Krungsri JCB Ultimate Credit Card in Thailand on 1 November, targeting consumers interested in Japanese culture, fashion, dining and travel. The new premium card is aimed at a segment the companies call “JNERATION” and expands their existing partnership, which already includes the Krungsri JCB Platinum. Krungsriayudhya Card [...]\nThe post Krungsri JCB Ultimate Credit Card to Debut in Thailand in November appeared first on Fintech Singapo",
+    "source": "Fintech News SG",
+    "published": "2026-10-19",
+    "sections": [
+      "credit_card"
+    ],
+    "summary_zh": "Krungsriayudhya Card 和 JCB International 将于 11 月 1 日在泰国推出 Krungsri JCB Ultimate 信用卡，针对对日本文化、时尚、餐饮和旅游感兴趣的消费者。新的高级卡针对的是公司称为“JNERATION”的细分市场，并扩大了他们现有的合作伙伴关系，其中已经包括 Krungsri JCB Platinum。Krungsriayudhya 卡 [...]\nKrungsri JCB Ultimate 信用卡将于 11 月在泰国首次亮相",
+    "is_major": false,
+    "fetched_date": "2026-10-20",
+    "title_zh": "【信用卡】 Krungsri JCB Ultimate 信用卡将于 11 月在泰国推出",
+    "source_zh": "Fintech News SG"
+  },
+  {
+    "title": "Thailand's Ministry of Finance and Bank of Thailand Seek Public Comment on BNPL Rules Capping Credit at 20,000 Baht and Total Interest and Fees at 15% per Year - finance.biggo.com",
+    "url": "https://finance.biggo.com/news/a4906d2f-e750-4b29-b41b-7700ad35e52e",
+    "summary": "Thailand's Ministry of Finance and Bank of Thailand Seek Public Comment on BNPL Rules Capping Credit at 20,000 Baht and Total Interest and Fees at 15% per Year  finance.biggo.com",
+    "source": "finance.biggo.com",
+    "published": "2026-10-19",
+    "sections": [
+      "regulation",
+      "bnpl"
+    ],
+    "summary_zh": "泰国财政部和泰国银行就 BNPL 规定信贷上限为 20,000 泰铢以及总利息和费用为每年 15% 的规定征求公众意见finance.biggo.com",
+    "is_major": true,
+    "fetched_date": "2026-10-20",
+    "title_zh": "【监管】 泰国财政部和泰国银行就 BNPL 规定信贷上限为 20,000 泰铢以及总利息和费用为每年 15% 的规定征求公众意见 - Finance.biggo.com",
+    "source_zh": "finance.biggo.com"
+  },
+  {
     "title": "ธนาคารกรุงเทพ หนุนสินเชื่อ Sansiri Capital 6.3 พันล้าน ซื้อโรงแรมหรู เลค โคโม - Thansettakij",
     "url": "https://www.thansettakij.com/real-estate/670412",
     "summary": "ธนาคารกรุงเทพ หนุนสินเชื่อ Sansiri Capital 6.3 พันล้าน ซื้อโรงแรมหรู เลค โคโม  Thansettakij",
