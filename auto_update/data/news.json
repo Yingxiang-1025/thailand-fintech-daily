@@ -1,5 +1,265 @@
 [
   {
+    "title": "บสย.-คลิกซ์ เชื่อมต่อ Virtual Bank ผลักดันสินเชื่อดิจิทัล ช่วย SMEs ฟรีแลนซ์ เข้าถึงเงินทุน - ประชาชาติธุรกิจ",
+    "url": "https://www.prachachat.net/finance/news-2087933",
+    "summary": "บสย.-คลิกซ์ เชื่อมต่อ Virtual Bank ผลักดันสินเชื่อดิจิทัล ช่วย SMEs ฟรีแลนซ์ เข้าถึงเงินทุน  ประชาชาติธุรกิจ",
+    "source": "GN Prachachat Finance",
+    "published": "2026-10-29",
+    "sections": [
+      "cash_loan",
+      "virtual_bank"
+    ],
+    "summary_zh": "TCG-Click 与虚拟银行合作，推动数字贷款，帮助中小企业和自由职业者在 Prachachat Turakij 获取资金。",
+    "is_major": false,
+    "fetched_date": "2026-10-30",
+    "title_zh": "【信贷】 TCG-Click 与虚拟银行合作推动数字贷款，帮助中小企业和自由职业者获得资金 - Prachachat Turakij",
+    "source_zh": "GN Prachachat Finance"
+  },
+  {
+    "title": "วิทัย ผู้ว่า ธปท. เร่งเครื่อง 3 นโยบายปี’70 แก้หนี้ครัวเรือน สินเชื่อเอสเอ็มอี กำกับน็อนแบงก์ - ประชาชาติธุรกิจ",
+    "url": "https://www.prachachat.net/finance/news-2087863",
+    "summary": "วิทัย ผู้ว่า ธปท. เร่งเครื่อง 3 นโยบายปี’70 แก้หนี้ครัวเรือน สินเชื่อเอสเอ็มอี กำกับน็อนแบงก์  ประชาชาติธุรกิจ",
+    "source": "GN Prachachat Finance",
+    "published": "2026-10-29",
+    "sections": [
+      "regulation",
+      "cash_loan"
+    ],
+    "summary_zh": "BoT 行长 Withai 在 2017 年加快了 3 项政策来解决家庭债务。中小企业贷款 定向非银行 Prachachat Turakij",
+    "is_major": true,
+    "fetched_date": "2026-10-30",
+    "title_zh": "【现金贷】 BoT 行长 Withai 在 2017 年加快了 3 项政策来解决家庭债务。非银行主导的中小企业贷款 - Prachachat Turakij",
+    "source_zh": "GN Prachachat Finance"
+  },
+  {
+    "title": "ธนาคารกรุงเทพ มั่นใจสินเชื่อปีนี้โตตามเป้า 2-3% แรงหนุนธุรกิจใหญ่ - ประชาชาติธุรกิจ",
+    "url": "https://www.prachachat.net/finance/news-2087746",
+    "summary": "ธนาคารกรุงเทพ มั่นใจสินเชื่อปีนี้โตตามเป้า 2-3% แรงหนุนธุรกิจใหญ่  ประชาชาติธุรกิจ",
+    "source": "GN Prachachat Finance",
+    "published": "2026-10-29",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "Prachachat Turakij 表示，曼谷银行有信心今年的贷款增长将实现 2-3% 的目标，以支持大型企业。",
+    "is_major": false,
+    "fetched_date": "2026-10-30",
+    "title_zh": "【现金贷】 曼谷银行有信心今年的贷款增长将达到 2-3% 的目标，以支持大型企业 - Prachachat Turakij",
+    "source_zh": "GN Prachachat Finance"
+  },
+  {
+    "title": "ธปท. เผยปี 70 รุกแก้หนี้ ช่วยเอสเอ็มอีเข้าถึงสินเชื่อ เข้มกำกับนอนแบงก์ - Thansettakij",
+    "url": "https://www.thansettakij.com/economy/672531",
+    "summary": "ธปท. เผยปี 70 รุกแก้หนี้ ช่วยเอสเอ็มอีเข้าถึงสินเชื่อ เข้มกำกับนอนแบงก์  Thansettakij",
+    "source": "GN Thansettakij",
+    "published": "2026-10-29",
+    "sections": [
+      "regulation",
+      "cash_loan"
+    ],
+    "summary_zh": "BoT透露，到2070年，它将积极解决债务问题并帮助中小企业获得信贷。Kem 领导非银行 Thansettakij",
+    "is_major": true,
+    "fetched_date": "2026-10-30",
+    "title_zh": "【现金贷】 BoT透露，到2070年，它将积极解决债务问题并帮助中小企业获得信贷。Kem 领导非银行 - Thansettakij",
+    "source_zh": "GN Thansettakij"
+  },
+  {
+    "title": "บสย. ผนึก “คลิกซ์” วางระบบสินเชื่อผ่าน Virtual Bank หนุน SMEs เข้าถึงทุน - ข่าวหุ้นธุรกิจออนไลน์",
+    "url": "https://www.kaohoon.com/news/local/876020",
+    "summary": "บสย. ผนึก “คลิกซ์” วางระบบสินเชื่อผ่าน Virtual Bank หนุน SMEs เข้าถึงทุน  ข่าวหุ้นธุรกิจออนไลน์",
+    "source": "GN Kaohoon",
+    "published": "2026-10-29",
+    "sections": [
+      "cash_loan",
+      "virtual_bank"
+    ],
+    "summary_zh": "TCG与“Clickx”合作，通过虚拟银行建立贷款系统，支持中小企业获取资金。在线商业新闻。",
+    "is_major": false,
+    "fetched_date": "2026-10-30",
+    "title_zh": "【信贷】 TCG携手“Clickx”通过虚拟银行建立贷款系统，支持中小企业获取资金 - 商业新闻",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "BBL คงเป้าสินเชื่อปีนี้โต 2-3% ชี้รายใหญ่-กลางหนุน - ข่าวหุ้นธุรกิจออนไลน์",
+    "url": "https://www.kaohoon.com/news/875776",
+    "summary": "BBL คงเป้าสินเชื่อปีนี้โต 2-3% ชี้รายใหญ่-กลางหนุน  ข่าวหุ้นธุรกิจออนไลน์",
+    "source": "GN Kaohoon",
+    "published": "2026-10-29",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "BBL维持今年2-3%的贷款增长目标，表明大中型企业支持线上经营消息。",
+    "is_major": false,
+    "fetched_date": "2026-10-30",
+    "title_zh": "【现金贷】 BBL维持今年贷款增长目标2-3% 表明大中型企业支持_财经头条",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "SME D Bank อัดสินเชื่อ 400 ล้านบาท อุ้ม SMEs ฟื้นฟูหลังน้ำท่วม ชูดอกเบี้ยต่ำ 3% - ข่าวหุ้นธุรกิจออนไลน์",
+    "url": "https://www.kaohoon.com/news/875788",
+    "summary": "SME D Bank อัดสินเชื่อ 400 ล้านบาท อุ้ม SMEs ฟื้นฟูหลังน้ำท่วม ชูดอกเบี้ยต่ำ 3%  ข่าวหุ้นธุรกิจออนไลน์",
+    "source": "GN Kaohoon",
+    "published": "2026-10-29",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "中小企业发展银行（SME D Bank）发放了 4 亿泰铢贷款，帮助中小企业在洪灾后恢复活力。推广低利率3% 在线商业股票新闻",
+    "is_major": false,
+    "fetched_date": "2026-10-30",
+    "title_zh": "【信贷】 中小企业发展银行（SME D Bank）发放了 4 亿泰铢贷款，帮助中小企业在洪灾后恢复活力。推动3%低利率 - 在线商业新闻",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "“ธอส.” ลุยมหกรรมบ้านคอนโด ชูสินเชื่อดอกเบี้ย 2.60% หั่นราคามือสอง 50% - ข่าวหุ้นธุรกิจออนไลน์",
+    "url": "https://www.kaohoon.com/pr/875780",
+    "summary": "“ธอส.” ลุยมหกรรมบ้านคอนโด ชูสินเชื่อดอกเบี้ย 2.60% หั่นราคามือสอง 50%  ข่าวหุ้นธุรกิจออนไลน์",
+    "source": "GN Kaohoon",
+    "published": "2026-10-29",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "“GH银行”亮相公寓展 推广贷款利率2.60% 二手价降50% 线上商业股票新闻",
+    "is_major": false,
+    "fetched_date": "2026-10-30",
+    "title_zh": "【现金贷】 “GH银行”亮相公寓房博会 促销贷款利率2.60% 二手价降50%_财经头条",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "สินเชื่อผ่อนชำระ - ข่าวหุ้นธุรกิจออนไลน์",
+    "url": "https://www.kaohoon.com/tag/%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%9C%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B8%8A%E0%B8%B3%E0%B8%A3%E0%B8%B0",
+    "summary": "สินเชื่อผ่อนชำระ  ข่าวหุ้นธุรกิจออนไลน์",
+    "source": "GN Kaohoon",
+    "published": "2026-10-29",
+    "sections": [
+      "cash_loan",
+      "bnpl"
+    ],
+    "summary_zh": "分期贷款  在线商业新闻",
+    "is_major": false,
+    "fetched_date": "2026-10-30",
+    "title_zh": "【现金贷】 分期贷款 - 在线商业新闻",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "“เอเซียพลัส” เชียร์ซื้อ BBL ชูฐานทุนแกร่ง ลุ้นสินเชื่อปีนี้ทะลุเป้า - ข่าวหุ้นธุรกิจออนไลน์",
+    "url": "https://www.kaohoon.com/news/875704",
+    "summary": "“เอเซียพลัส” เชียร์ซื้อ BBL ชูฐานทุนแกร่ง ลุ้นสินเชื่อปีนี้ทะลุเป้า  ข่าวหุ้นธุรกิจออนไลน์",
+    "source": "GN Kaohoon",
+    "published": "2026-10-29",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "《Asia Plus》为收购BBL喝彩，推动资本基础雄厚 希望今年贷款超额完成目标。在线商业新闻。",
+    "is_major": false,
+    "fetched_date": "2026-10-30",
+    "title_zh": "【现金贷】 “亚洲+”​​欢呼收购BBL 助推雄厚资本 盼今年贷款超额_财经频道_东方资讯",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "สินเชื่อเช่าซื้อสมาร์ตโฟน - ข่าวหุ้นธุรกิจออนไลน์",
+    "url": "https://www.kaohoon.com/tag/%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B9%80%E0%B8%8A%E0%B9%88%E0%B8%B2%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%AA%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%95",
+    "summary": "สินเชื่อเช่าซื้อสมาร์ตโฟน  ข่าวหุ้นธุรกิจออนไลน์",
+    "source": "GN Kaohoon",
+    "published": "2026-10-29",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "智能手机分期付款购买贷款、在线商业新闻",
+    "is_major": false,
+    "fetched_date": "2026-10-30",
+    "title_zh": "【现金贷】 智能手机租赁贷款 - 在线商业新闻",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "สินเชื่อ 6 พันล้าน - ข่าวหุ้นธุรกิจออนไลน์",
+    "url": "https://www.kaohoon.com/tag/%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD-6-%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%99",
+    "summary": "สินเชื่อ 6 พันล้าน  ข่าวหุ้นธุรกิจออนไลน์",
+    "source": "GN Kaohoon",
+    "published": "2026-10-28",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "60亿贷款，网上商业新闻",
+    "is_major": false,
+    "fetched_date": "2026-10-30",
+    "title_zh": "【现金贷】 60亿贷款-在线商业新闻",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "สินเชื่อไม่มีหลักประกัน - ข่าวหุ้นธุรกิจออนไลน์ - ข่าวหุ้นธุรกิจออนไลน์",
+    "url": "https://www.kaohoon.com/tag/%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B1",
+    "summary": "สินเชื่อไม่มีหลักประกัน - ข่าวหุ้นธุรกิจออนไลน์  ข่าวหุ้นธุรกิจออนไลน์",
+    "source": "GN Kaohoon",
+    "published": "2026-10-28",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "无抵押贷款 - 在线商业新闻 在线商业新闻",
+    "is_major": false,
+    "fetched_date": "2026-10-30",
+    "title_zh": "【现金贷】 无抵押贷款 - 在线商业新闻 - 在线商业新闻",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "สินเชื่อการค้าระหว่างประเทศ - ข่าวหุ้นธุรกิจออนไลน์",
+    "url": "https://www.kaohoon.com/tag/%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%84%E0%B9%89%E0%B8%B2%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%9B",
+    "summary": "สินเชื่อการค้าระหว่างประเทศ  ข่าวหุ้นธุรกิจออนไลน์",
+    "source": "GN Kaohoon",
+    "published": "2026-10-28",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "国际贸易信贷在线商业新闻",
+    "is_major": false,
+    "fetched_date": "2026-10-30",
+    "title_zh": "【现金贷】 国际贸易贷款-在线商业新闻",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "สินเชื่อ 20 ล้านบาท - ข่าวหุ้นธุรกิจออนไลน์",
+    "url": "https://www.kaohoon.com/tag/%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD-20-%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B8%B2%E0%B8%97",
+    "summary": "สินเชื่อ 20 ล้านบาท  ข่าวหุ้นธุรกิจออนไลน์",
+    "source": "GN Kaohoon",
+    "published": "2026-10-28",
+    "sections": [
+      "cash_loan"
+    ],
+    "summary_zh": "贷款 2000 万泰铢 在线商业新闻",
+    "is_major": false,
+    "fetched_date": "2026-10-30",
+    "title_zh": "【现金贷】 贷款2000万泰铢 - 在线商业新闻",
+    "source_zh": "GN Kaohoon"
+  },
+  {
+    "title": "กนง. ฉายฉากทัศน์ ‘เศรษฐกิจไทย’",
+    "url": "https://www.kaohoon.com/column/875954",
+    "summary": "การแถลงทิศทางนโยบายการเงินโดยธนาคารแห่งประเทศไทย (ธปท.) ผ่านคณะกรรมการนโยบายการเงิน (กนง.) สะท้อนให้เห็นถึงภาพรวมของเศรษฐกิจไทย\nThe post กนง. ฉายฉากทัศน์ ‘เศรษฐกิจไทย’ appeared first on ข่าวหุ้นธุรกิจออนไลน์.",
+    "source": "Kaohoon Direct",
+    "published": "2026-10-29",
+    "sections": [
+      "regulation"
+    ],
+    "summary_zh": "泰国央行（BoT）通过货币政策委员会（MPC）宣布的货币政策方向反映了泰国经济的整体情况。\n货币政策委员会公布的“泰国经济”前景首先出现在在线商业新闻上。",
+    "is_major": true,
+    "fetched_date": "2026-10-30",
+    "title_zh": "【金融科技】 货币政策委员会提出“泰国经济”愿景",
+    "source_zh": "Kaohoon Direct"
+  },
+  {
+    "title": "Thai Platform Unveils Crypto-to-QR Payment App for Foreign Travelers - Cryptonews.net",
+    "url": "https://cryptonews.net/news/market/33655513/",
+    "summary": "Thai Platform Unveils Crypto-to-QR Payment App for Foreign Travelers  Cryptonews.net",
+    "source": "Cryptonews.net",
+    "published": "2026-10-27",
+    "sections": [
+      "e_wallet"
+    ],
+    "summary_zh": "泰国平台为外国游客推出加密货币到二维码支付应用程序 Cryptonews.net",
+    "is_major": false,
+    "fetched_date": "2026-10-30",
+    "title_zh": "【电子钱包】 泰国平台为外国游客推出加密货币到二维码支付应用程序 - Cryptonews.net",
+    "source_zh": "Cryptonews.net"
+  },
+  {
     "title": "3 แบงก์รัฐ ผุดสินเชื่อ Solar ภาคประชาชน ดอกเบี้ย 2.50% ขานรับนโยบายเปลี่ยนผ่านพลังงาน - ประชาชาติธุรกิจ",
     "url": "https://www.prachachat.net/finance/news-2087365",
     "summary": "3 แบงก์รัฐ ผุดสินเชื่อ Solar ภาคประชาชน ดอกเบี้ย 2.50% ขานรับนโยบายเปลี่ยนผ่านพลังงาน  ประชาชาติธุรกิจ",
